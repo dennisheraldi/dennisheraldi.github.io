@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<article class="pt-32 pb-20">
+  <div class="max-w-3xl mx-auto px-6">
+    <!-- Back link -->
+    <a
+      href="{{ '/blog' | relative_url }}"
+      class="inline-flex items-center gap-2 text-sm text-muted hover:text-primary transition-colors mb-8"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      Back to blog
+    </a>
+
+    <!-- Header -->
+    <header class="mb-12">
+      <div class="flex items-center gap-3 text-sm text-muted mb-4">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        {% if page.tags.size > 0 %}
+          <span>·</span>
+          <div class="flex gap-2">
+            {% for tag in page.tags %}
+              <span class="px-2 py-0.5 bg-light-border dark:bg-dark-border rounded text-xs">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+        {{ page.title }}
+      </h1>
+      <p class="text-lg text-muted">{{ page.description }}</p>
+    </header>
+
+    <!-- Content -->
+    <div class="prose prose-neutral dark:prose-invert prose-lg max-w-none
+                prose-headings:font-semibold prose-headings:tracking-tight
+                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                prose-code:font-mono prose-code:text-sm
+                prose-pre:bg-dark-card prose-pre:border prose-pre:border-dark-border">
+      {{ content }}
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-light-border dark:border-dark-border">
+      <a
+        href="{{ '/blog' | relative_url }}"
+        class="text-primary hover:underline inline-flex items-center gap-2"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        All posts
+      </a>
+    </footer>
+  </div>
+</article>
+

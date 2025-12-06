@@ -1,0 +1,45 @@
+- title: Languages
+  icon: code
+  skills:
+    - Java
+    - Golang
+    - PHP
+    - Python
+    - JavaScript
+    - Shell
+
+- title: Frameworks
+  icon: layers
+  skills:
+    - Laravel
+    - React
+    - ViteJS
+    - NodeJS
+    - Fastify
+    - JAX-WS
+
+- title: Databases
+  icon: database
+  skills:
+    - PostgreSQL
+    - MySQL
+    - ArangoDB
+    - Oracle
+
+- title: Tools
+  icon: tool
+  skills:
+    - RabbitMQ
+    - Kafka
+    - OpenTelemetry
+    - Vault
+    - Consul
+
+- title: Cloud & DevOps
+  icon: cloud
+  skills:
+    - GCP
+    - AWS
+    - Docker
+    - Jenkins
+

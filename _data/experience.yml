@@ -1,0 +1,43 @@
+- company: CSG International
+  role: Software Developer Engineer I
+  location: Jakarta, Indonesia
+  period: Jan 2025 — Present
+  description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
+  current: true
+  highlights:
+    - Contributed to development that earned company TMForum DTW 2025 award by architecting innovative engine for intent-driven network API transformations as MVP of Catalyst project in collaboration with Ericsson
+    - Achieved zero transaction failures by implementing comprehensive end-to-end recovery mechanism with idempotency features, process engine auto-retry, and enhanced internal error handling
+    - Delivered ready-to-go product solutions by improving 50+ customized XML product specifications and modernizing Java microservices
+
+- company: Paper.id
+  role: Software Engineer
+  location: Jakarta, Indonesia
+  period: Nov 2023 — Dec 2024
+  description: Paper.id is a platform providing invoicing, payment, and financing solutions for businesses.
+  current: false
+  highlights:
+    - Accelerated message template creation from hours to under a minute by integrating third-party SMS and WhatsApp broadcast messaging services with concurrent Goroutines processing
+    - Architected unified payment engine handling diverse bank behaviors and merchant-specific requirements, enabling seamless multi-party integrations
+    - Achieved 99% transaction success rate for QRIS, direct transfers, virtual accounts, and cross-border remittances, contributing 4 billion IDR TPV monthly
+    - Enhanced system robustness with dynamic table partitioning and automated transaction reconciliation, increasing query performance by 20%
+
+- company: Suitmedia
+  role: Software Engineer Intern
+  location: Bandung, Indonesia
+  period: May 2023 — Sep 2023
+  description: Suitmedia is a digital agency specializing in technology and marketing solutions.
+  current: false
+  highlights:
+    - Delivered comprehensive CMS solution by designing and implementing 35 dynamic menus and 50 API endpoints using Laravel framework
+    - Optimized system performance by redesigning database structures, resulting in 30% improved query performance
+
+- company: Synpulse
+  role: Software Engineer Intern
+  location: Jakarta, Indonesia
+  period: Oct 2022 — Dec 2022
+  description: Synpulse is a management consulting firm serving financial services providers.
+  current: false
+  highlights:
+    - Streamlined core banking system migration by authoring functional requirements for 20 system specifications for Banking Client's Avaloq transition project
+    - Eliminated manual daily data processing by developing automated shell scripts, reducing reconciliation report processing from 15 minutes to instant execution
+

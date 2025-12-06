@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased font-sans;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
+/* Hamburger menu animation */
+.hamburger-active span:nth-child(1) {
+  @apply rotate-45 translate-y-2;
+}
+
+.hamburger-active span:nth-child(2) {
+  @apply opacity-0;
+}
+
+.hamburger-active span:nth-child(3) {
+  @apply -rotate-45 -translate-y-2;
+}
+

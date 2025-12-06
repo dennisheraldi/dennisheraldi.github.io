@@ -1,0 +1,50 @@
+# Site settings
+title: Dennis Heraldi
+description: Software engineer experienced in integrating diverse microservices into unified solutions. Adaptive to new tech, focused on building reliable, failure-tolerant systems.
+author: Fachry Dennis Heraldi
+email: fd.heraldi@gmail.com
+url: "https://dennisheraldi.github.io"
+baseurl: ""
+
+# Social links
+github_username: dennisheraldi
+linkedin_username: dennisheraldi
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:title/
+
+# Sass settings
+sass:
+  style: compressed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - tailwind.config.js
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins (GitHub Pages compatible)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+

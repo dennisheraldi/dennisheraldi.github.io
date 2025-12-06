@@ -1,0 +1,55 @@
+---
+layout: default
+title: Blog | Dennis Heraldi
+description: Thoughts on software engineering, backend development, and building systems at scale.
+---
+
+<section class="pt-32 pb-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Header -->
+    <div class="max-w-2xl mb-16">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Blog</h1>
+      <p class="text-lg text-muted">
+        Thoughts on software engineering, backend development, payment systems,
+        and lessons learned along the way.
+      </p>
+    </div>
+
+    <!-- Posts Grid -->
+    {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+    {% if sorted_posts.size > 0 %}
+    <div class="grid gap-6 md:grid-cols-2">
+      {% for post in sorted_posts %}
+      <article class="group p-6 rounded-xl border border-light-border dark:border-dark-border bg-light-card dark:bg-dark-card hover:border-primary/50 transition-colors">
+        <a href="{{ post.url | relative_url }}" class="block">
+          <div class="flex items-center gap-2 text-sm text-muted mb-3">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%b %d, %Y" }}
+            </time>
+            {% if post.tags.size > 0 %}
+              <span>·</span>
+              <span class="text-primary">{{ post.tags | first }}</span>
+            {% endif %}
+          </div>
+          <h2 class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+            {{ post.title }}
+          </h2>
+          <p class="text-muted line-clamp-2">{{ post.description }}</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm text-primary font-medium">
+            Read more
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20">
+      <p class="text-muted">No posts yet. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+

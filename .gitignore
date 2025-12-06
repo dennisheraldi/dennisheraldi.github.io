@@ -1,1 +1,39 @@
-/node_modules
+# Dependencies
+node_modules/
+
+# Build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Sass cache
+.sass-cache/
+
+# Environment
+.env
+.env.*
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Bundler
+vendor/
+.bundle/
+
+# Playwright
+.playwright-mcp
+
+# Lock files (regenerated on install)
+Gemfile.lock
