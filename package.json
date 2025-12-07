@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "Personal portfolio of Fachry Dennis Heraldi - Software Engineer",
   "scripts": {
-    "css:build": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --minify",
-    "css:watch": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
+    "css:build": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/tailwind.css --minify",
+    "css:watch": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/tailwind.css --watch",
     "jekyll:serve": "bundle exec jekyll serve --livereload",
     "dev": "npm run css:build && npm run jekyll:serve",
     "build": "npm run css:build && bundle exec jekyll build"

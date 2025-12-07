@@ -6,6 +6,9 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
+# Generated CSS (built from Tailwind)
+assets/css/tailwind.css
+
 # Sass cache
 .sass-cache/
 

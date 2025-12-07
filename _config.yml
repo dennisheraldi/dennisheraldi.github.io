@@ -15,7 +15,11 @@ markdown: kramdown
 highlighter: rouge
 permalink: /blog/:title/
 
-# Sass settings
+# Disable default theme from github-pages gem
+theme: null
+remote_theme: null
+
+# Sass settings - disable SCSS processing to avoid overwriting Tailwind
 sass:
   style: compressed
 
