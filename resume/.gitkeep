@@ -1,0 +1,9 @@
+# This directory contains the resume source and generated files
+# 
+# Files:
+# - resume.typ       : Typst source (tracked)
+# - resume.pdf       : Generated PDF (built by GitHub Actions)
+# - resume-thumb.png : Generated thumbnail (built by GitHub Actions)
+#
+# The PDF and thumbnail are generated automatically on every push.
+

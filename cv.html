@@ -1,0 +1,132 @@
+---
+layout: default
+title: CV | Dennis Heraldi
+description: View and download my resume/CV
+---
+
+<section class="pt-32 pb-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">Resume / CV</h1>
+        <p class="text-muted">Last updated: December 2024</p>
+      </div>
+      <a 
+        href="{{ '/resume/resume.pdf' | relative_url }}" 
+        download="Fachry_Dennis_Heraldi_Resume.pdf"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        Download PDF
+      </a>
+    </div>
+
+    <!-- Thumbnail Preview (clickable to expand) -->
+    <div class="mb-8">
+      <button 
+        id="preview-toggle"
+        class="group relative w-full max-w-md mx-auto block rounded-xl overflow-hidden shadow-lg border border-light-border dark:border-dark-border hover:shadow-xl transition-shadow cursor-pointer"
+        aria-label="Click to view full resume"
+      >
+        <img 
+          id="resume-thumb"
+          src="{{ '/resume/resume-thumb.png' | relative_url }}" 
+          alt="Resume Preview" 
+          class="w-full"
+          onerror="this.style.display='none'; document.getElementById('thumb-fallback').style.display='flex';"
+        />
+        <div id="thumb-fallback" class="hidden items-center justify-center h-96 bg-light-card dark:bg-dark-card">
+          <div class="text-center text-muted">
+            <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <p>Preview loading...</p>
+          </div>
+        </div>
+        <div class="absolute inset-0 bg-dark/0 group-hover:bg-dark/10 transition-colors flex items-center justify-center">
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity bg-dark/80 text-white px-4 py-2 rounded-lg text-sm font-medium">
+            Click to view full PDF
+          </span>
+        </div>
+      </button>
+      <p class="text-center text-sm text-muted mt-3">Click the preview to expand</p>
+    </div>
+
+    <!-- Full PDF Viewer (hidden by default) -->
+    <div id="pdf-viewer" class="hidden">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">Full Resume</h2>
+        <button 
+          id="close-viewer"
+          class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+          aria-label="Close viewer"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="rounded-xl overflow-hidden border border-light-border dark:border-dark-border shadow-lg bg-white dark:bg-dark-card">
+        <iframe 
+          id="pdf-frame"
+          src=""
+          class="w-full h-[80vh]"
+          title="Resume PDF"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="mt-12 p-6 rounded-xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border">
+      <h3 class="font-semibold mb-3">About this resume</h3>
+      <ul class="space-y-2 text-muted text-sm">
+        <li class="flex items-start gap-2">
+          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Written in <a href="https://typst.app" target="_blank" rel="noopener" class="text-primary hover:underline">Typst</a> and auto-compiled on every update</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Source code available on <a href="https://github.com/dennisheraldi/dennisheraldi.github.io/blob/main/resume/resume.typ" target="_blank" rel="noopener" class="text-primary hover:underline">GitHub</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>ATS-friendly format with no hyphenation</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const previewToggle = document.getElementById('preview-toggle');
+    const pdfViewer = document.getElementById('pdf-viewer');
+    const closeViewer = document.getElementById('close-viewer');
+    const pdfFrame = document.getElementById('pdf-frame');
+    const pdfUrl = '{{ "/resume/resume.pdf" | relative_url }}';
+
+    previewToggle.addEventListener('click', function() {
+      // Load PDF only when viewer is opened
+      if (!pdfFrame.src) {
+        pdfFrame.src = pdfUrl;
+      }
+      pdfViewer.classList.remove('hidden');
+      previewToggle.parentElement.classList.add('hidden');
+    });
+
+    closeViewer.addEventListener('click', function() {
+      pdfViewer.classList.add('hidden');
+      previewToggle.parentElement.classList.remove('hidden');
+    });
+  });
+</script>
+

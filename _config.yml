@@ -28,6 +28,12 @@ exclude:
   - package-lock.json
   - README.md
   - tailwind.config.js
+  - resume/resume.typ
+
+# Include generated files
+include:
+  - resume/resume.pdf
+  - resume/resume-thumb.png
 
 # Collections
 collections:

@@ -7,6 +7,7 @@ My personal portfolio and blog built with [Jekyll](https://jekyllrb.com) and [Ta
 - Clean, minimal design with dark/light mode
 - Responsive layout for all devices
 - Blog with markdown support
+- **Resume/CV** in Typst format with auto-compilation to PDF
 - Fast static site generation
 - GitHub Pages compatible
 
@@ -20,6 +21,23 @@ This site auto-deploys to GitHub Pages via GitHub Actions. Just push to the `mai
 2. Under "Build and deployment", select **GitHub Actions** as the source
 3. Push to `main` - the workflow will automatically build and deploy
 
+## Resume / CV
+
+The resume is written in [Typst](https://typst.app) and automatically compiled to PDF on every push.
+
+### Files
+
+- `resume/resume.typ` - Typst source file (edit this)
+- `resume/resume.pdf` - Generated PDF (auto-built)
+- `resume/resume-thumb.png` - Generated thumbnail (auto-built)
+
+### Updating your resume
+
+1. Edit `resume/resume.typ`
+2. Push to `main`
+3. GitHub Actions will compile it to PDF and generate a thumbnail
+4. The CV page will show the updated resume
+
 ## Local Development
 
 ### Prerequisites
@@ -27,6 +45,7 @@ This site auto-deploys to GitHub Pages via GitHub Actions. Just push to the `mai
 - Ruby 3.0+ (install via [rbenv](https://github.com/rbenv/rbenv) or [asdf](https://asdf-vm.com/))
 - Bundler
 - Node.js 18+
+- (Optional) [Typst](https://typst.app) for local resume compilation
 
 ### Setup
 
@@ -58,6 +77,16 @@ npm run css:watch
 bundle exec jekyll serve --livereload
 ```
 
+### Local Resume Compilation (optional)
+
+```bash
+# Install Typst (macOS)
+brew install typst
+
+# Compile resume
+typst compile resume/resume.typ resume/resume.pdf
+```
+
 ## Adding Blog Posts
 
 Create a new file in `_posts/` with the naming format `YYYY-MM-DD-title.md`:
@@ -86,8 +115,13 @@ Your content here...
 │   ├── css/             # Tailwind CSS
 │   └── js/              # JavaScript
 ├── public/              # Static assets (images, favicon)
+├── resume/
+│   ├── resume.typ       # Typst source
+│   ├── resume.pdf       # Generated PDF
+│   └── resume-thumb.png # Generated thumbnail
 ├── index.html           # Homepage
 ├── blog.html            # Blog index
+├── cv.html              # CV/Resume page
 ├── Gemfile              # Ruby dependencies
 ├── package.json         # Node dependencies
 └── tailwind.config.js   # Tailwind configuration
@@ -97,6 +131,7 @@ Your content here...
 
 - [Jekyll](https://jekyllrb.com) - Static site generator
 - [Tailwind CSS](https://tailwindcss.com) - Styling
+- [Typst](https://typst.app) - Resume typesetting
 - [Liquid](https://shopify.github.io/liquid/) - Templating
 
 ## License
