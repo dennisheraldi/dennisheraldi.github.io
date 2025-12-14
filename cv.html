@@ -7,149 +7,238 @@ description: View and download my resume/CV
 <section class="pt-32 pb-20">
   <div class="max-w-5xl mx-auto px-6">
     <!-- Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+    >
       <div>
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">Resume / CV</h1>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+          Resume / CV
+        </h1>
         <p class="text-muted">Last updated: December 2024</p>
       </div>
-      <a 
-        href="{{ '/resume/resume.pdf' | relative_url }}" 
+      <a
+        href="{{ '/resume/resume.pdf' | relative_url }}"
         download="Fachry_Dennis_Heraldi_Resume.pdf"
         class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
         </svg>
         Download PDF
       </a>
     </div>
 
     <!-- PDF Viewer Container -->
-    <div class="rounded-xl overflow-hidden border border-light-border dark:border-dark-border shadow-lg bg-gray-100 dark:bg-dark-card">
+    <div
+      class="rounded-xl overflow-hidden border border-light-border dark:border-dark-border shadow-lg bg-gray-100 dark:bg-dark-card"
+    >
       <!-- PDF Controls -->
-      <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-dark border-b border-light-border dark:border-dark-border">
+      <div
+        class="flex items-center justify-between px-4 py-3 bg-white dark:bg-dark border-b border-light-border dark:border-dark-border"
+      >
         <div class="flex items-center gap-2">
-          <button 
-            id="prev-page" 
+          <button
+            id="prev-page"
             class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous page"
             disabled
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
           <span class="text-sm text-muted min-w-[100px] text-center">
             <span id="page-num">1</span> / <span id="page-count">-</span>
           </span>
-          <button 
-            id="next-page" 
+          <button
+            id="next-page"
             class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next page"
             disabled
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
         </div>
-        
+
         <div class="flex items-center gap-2">
-          <button 
-            id="zoom-out" 
+          <button
+            id="zoom-out"
             class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
             aria-label="Zoom out"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"/>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"
+              />
             </svg>
           </button>
-          <span id="zoom-level" class="text-sm text-muted min-w-[50px] text-center">100%</span>
-          <button 
-            id="zoom-in" 
+          <span
+            id="zoom-level"
+            class="text-sm text-muted min-w-[50px] text-center"
+            >100%</span
+          >
+          <button
+            id="zoom-in"
             class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
             aria-label="Zoom in"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+              />
             </svg>
           </button>
-          <button 
-            id="fit-width" 
+          <button
+            id="fit-width"
             class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors ml-2"
             aria-label="Fit to width"
             title="Fit to width"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+              />
             </svg>
           </button>
         </div>
       </div>
 
       <!-- PDF Canvas Container -->
-      <div id="pdf-container" class="overflow-auto bg-gray-200 dark:bg-gray-800" style="height: 70vh;">
+      <div
+        id="pdf-container"
+        class="overflow-auto bg-gray-200 dark:bg-gray-800"
+        style="height: 70vh"
+      >
         <div id="pdf-loading" class="flex items-center justify-center h-full">
           <div class="text-center">
-            <svg class="w-12 h-12 mx-auto mb-4 text-primary animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <svg
+              class="w-12 h-12 mx-auto mb-4 text-primary animate-spin"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
             </svg>
             <p class="text-muted">Loading PDF...</p>
           </div>
         </div>
-        <div id="pdf-error" class="hidden flex items-center justify-center h-full">
+        <div
+          id="pdf-error"
+          class="hidden flex items-center justify-center h-full"
+        >
           <div class="text-center text-muted">
-            <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            <svg
+              class="w-16 h-16 mx-auto mb-4 opacity-50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
             </svg>
             <p class="mb-2">Failed to load PDF</p>
-            <a href="{{ '/resume/resume.pdf' | relative_url }}" class="text-primary hover:underline">Download instead</a>
+            <a
+              href="{{ '/resume/resume.pdf' | relative_url }}"
+              class="text-primary hover:underline"
+              >Download instead</a
+            >
           </div>
         </div>
         <canvas id="pdf-canvas" class="hidden mx-auto shadow-lg"></canvas>
       </div>
     </div>
-
-    <!-- Additional Info -->
-    <div class="mt-12 p-6 rounded-xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border">
-      <h3 class="font-semibold mb-3">About this resume</h3>
-      <ul class="space-y-2 text-muted text-sm">
-        <li class="flex items-start gap-2">
-          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>Written in <a href="https://typst.app" target="_blank" rel="noopener" class="text-primary hover:underline">Typst</a> and auto-compiled on every update</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>Source code available on <a href="https://github.com/dennisheraldi/dennisheraldi.github.io/blob/main/resume/resume.typ" target="_blank" rel="noopener" class="text-primary hover:underline">GitHub</a></span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>Rendered with <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener" class="text-primary hover:underline">PDF.js</a> by Mozilla</span>
-        </li>
-      </ul>
-    </div>
   </div>
 </section>
 
 <!-- PDF.js Library from CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs"
+  type="module"
+></script>
 
 <script type="module">
   // Import PDF.js
-  const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
-  
+  const pdfjsLib = await import(
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs'
+  );
+
   // Set worker source
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
 
   const pdfUrl = '{{ "/resume/resume.pdf" | relative_url }}';
-  
+
   // DOM Elements
   const canvas = document.getElementById('pdf-canvas');
   const ctx = canvas.getContext('2d');
@@ -177,33 +266,32 @@ description: View and download my resume/CV
   // Render a specific page
   async function renderPage(num) {
     pageRendering = true;
-    
+
     try {
       const page = await pdfDoc.getPage(num);
       const viewport = page.getViewport({ scale });
-      
+
       // Support HiDPI displays
       const outputScale = window.devicePixelRatio || 1;
-      
+
       canvas.width = Math.floor(viewport.width * outputScale);
       canvas.height = Math.floor(viewport.height * outputScale);
       canvas.style.width = Math.floor(viewport.width) + 'px';
       canvas.style.height = Math.floor(viewport.height) + 'px';
 
-      const transform = outputScale !== 1 
-        ? [outputScale, 0, 0, outputScale, 0, 0] 
-        : null;
+      const transform =
+        outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
 
       const renderContext = {
         canvasContext: ctx,
         transform: transform,
-        viewport: viewport
+        viewport: viewport,
       };
-      
+
       await page.render(renderContext).promise;
-      
+
       pageRendering = false;
-      
+
       if (pageNumPending !== null) {
         renderPage(pageNumPending);
         pageNumPending = null;
@@ -266,7 +354,7 @@ description: View and download my resume/CV
   // Fit to container width
   async function fitToWidth() {
     if (!pdfDoc) return;
-    
+
     const page = await pdfDoc.getPage(pageNum);
     const viewport = page.getViewport({ scale: 1 });
     const containerWidth = container.clientWidth - 40; // Account for padding
@@ -286,8 +374,8 @@ description: View and download my resume/CV
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    
-    switch(e.key) {
+
+    switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowUp':
         onPrevPage();
@@ -310,18 +398,17 @@ description: View and download my resume/CV
   try {
     const loadingTask = pdfjsLib.getDocument(pdfUrl);
     pdfDoc = await loadingTask.promise;
-    
+
     pageCountEl.textContent = pdfDoc.numPages;
     loadingEl.classList.add('hidden');
     canvas.classList.remove('hidden');
-    
+
     // Enable navigation buttons
     prevBtn.disabled = false;
     nextBtn.disabled = pdfDoc.numPages <= 1;
-    
+
     // Initial render - fit to width
     await fitToWidth();
-    
   } catch (error) {
     console.error('Error loading PDF:', error);
     loadingEl.classList.add('hidden');

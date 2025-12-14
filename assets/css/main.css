@@ -47,3 +47,92 @@
   @apply -rotate-45 -translate-y-2;
 }
 
+/* Photo Carousel - Horizontal Scroll Gallery */
+.photo-carousel {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  overflow: hidden;
+  max-width: none !important;
+}
+
+.carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: #e5e5e5;
+  border-radius: 9999px;
+}
+
+.dark .carousel-track::-webkit-scrollbar-track {
+  background: #262626;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.5);
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  margin: 0 !important;
+  scroll-snap-align: start;
+  width: 300px;
+  min-width: 300px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 14rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+.carousel-item figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+  color: #737373;
+}
+
+@media (min-width: 640px) {
+  .carousel-item {
+    width: 400px;
+    min-width: 400px;
+  }
+  .carousel-item img {
+    height: 16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-item {
+    width: 480px;
+    min-width: 480px;
+  }
+  .carousel-item img {
+    height: 18rem;
+  }
+}
