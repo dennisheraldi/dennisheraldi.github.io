@@ -1,0 +1,39 @@
+# Source of truth for personal info shared by website + PDF resume.
+# Edit here; both the homepage and resume/resume.pdf will pick it up.
+
+name: Fachry Dennis Heraldi
+title: Software Engineer
+
+# `summary` is the default. It powers the homepage hero and the SWE PDF resume.
+summary: >-
+  Software engineer experienced in integrating diverse microservices into
+  unified solutions. Adaptive to new tech, focused on building reliable,
+  failure-tolerant systems, and dedicated to clear documentation and
+  knowledge sharing.
+
+# `summary_academic` is used only by the academic CV PDF (resume-academic.pdf)
+# and is angled toward AI/ML graduate program applications. Edit freely.
+summary_academic: >-
+  Software engineer with a research interest in applied LLMs and natural
+  language processing. Recipient of the ICAICTA 2024 Best Paper Award for
+  fine-tuning Llama 2 on sarcasm detection. Currently pioneering AI
+  integration at CSG, shipping LLM-powered systems with prompt engineering,
+  confidence-thresholded inference, and human-in-the-loop safety. Seeking
+  graduate study to pursue rigorous research in AI/ML.
+
+location: Jakarta, Indonesia
+phone: "+62 882 1185 4646"
+email: fd.heraldi@gmail.com
+
+# Links rendered (in this order) in the PDF header and on the site.
+# `short` is what users see; `url` is where it points.
+links:
+  - short: linkedin.com/in/dennisheraldi
+    url: https://linkedin.com/in/dennisheraldi
+  - short: dennisheraldi.github.io
+    url: https://dennisheraldi.github.io
+  - short: github.com/dennisheraldi
+    url: https://github.com/dennisheraldi
+
+# Used by cv.html. Format: "Month YYYY". Keep human-readable.
+last_updated: May 2026

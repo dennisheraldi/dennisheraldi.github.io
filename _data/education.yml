@@ -1,0 +1,14 @@
+# Education entries: shared by website + PDF resumes.
+
+- school: Institut Teknologi Bandung
+  degree: Bachelor of Engineering in Informatics
+  period: Aug 2020 - Oct 2024
+  period_full: August 2020 - October 2024
+  gpa: 3.76/4.00 (Cumlaude)
+  coursework:
+    - Algorithm and Data Structure
+    - Software Project Management
+    - Database Management
+    - Platform-based Application Development
+    - Parallel and Distributed Systems
+    - Advanced Machine Learning

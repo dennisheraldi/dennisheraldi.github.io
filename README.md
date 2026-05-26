@@ -7,7 +7,7 @@ My personal portfolio and blog built with [Jekyll](https://jekyllrb.com) and [Ta
 - Clean, minimal design with dark/light mode
 - Responsive layout for all devices
 - Blog with markdown support
-- **Resume/CV** in Typst format with auto-compilation to PDF
+- **Two resumes** (Software Engineering + Academic CV) generated from a shared YAML source of truth, auto-compiled to PDF via Typst
 - Fast static site generation
 - GitHub Pages compatible
 
@@ -23,20 +23,61 @@ This site auto-deploys to GitHub Pages via GitHub Actions. Just push to the `mai
 
 ## Resume / CV
 
-The resume is written in [Typst](https://typst.app) and automatically compiled to PDF on every push.
+Two resume variants are generated from a single YAML source of truth:
+
+- **Software Engineering resume**: `resume/resume-swe.pdf` (also published at `resume/resume.pdf` for backwards compatibility).
+- **Academic CV**: `resume/resume-academic.pdf`. Targeted at AI/ML graduate program applications; leads with Education and Publications & Awards.
+
+### How it works
+
+All content lives in `_data/*.yml`. The Typst templates only render; they don't store content. Edit the YAML, push, and GitHub Actions rebuilds **both** PDFs and the website.
 
 ### Files
 
-- `resume/resume.typ` - Typst source file (edit this)
-- `resume/resume.pdf` - Generated PDF (auto-built)
-- `resume/resume-thumb.png` - Generated thumbnail (auto-built)
+```
+_data/
+├── profile.yml       # Name, summary (+ summary_academic), contact, links
+├── experience.yml    # Work experience (shared by both resumes + homepage)
+├── education.yml     # Education
+├── skills.yml        # Technical skills (rendered as cards on homepage)
+└── awards.yml        # Publications & Awards (academic CV only)
+
+resume/
+├── _template.typ            # Shared layout primitives + markdown helper
+├── resume-swe.typ           # SWE resume renderer
+├── resume-academic.typ      # Academic CV renderer
+├── resume-swe.pdf           # Generated (auto-built)
+├── resume-academic.pdf      # Generated (auto-built)
+├── resume.pdf               # Backwards-compat alias of resume-swe.pdf
+└── resume-thumb.png         # Generated thumbnail (auto-built)
+```
+
+### Bullet formatting
+
+Highlight strings in the YAML accept basic Markdown:
+
+- `**text**` for **bold**. Renders on the website (via `markdownify`) and in both PDFs.
+- `*text*` for *italic*.
+
+### Per-audience bullets
+
+Inside an `experience` entry you can split bullets:
+
+```yaml
+highlights:           # always shown
+  - "Always-relevant bullet"
+highlights_swe:       # appended on the SWE resume only
+  - "Industry-flavored bullet"
+highlights_academic:  # appended on the academic CV only
+  - "Research-flavored bullet"
+```
 
 ### Updating your resume
 
-1. Edit `resume/resume.typ`
-2. Push to `main`
-3. GitHub Actions will compile it to PDF and generate a thumbnail
-4. The CV page will show the updated resume
+1. Edit the relevant `_data/*.yml` file.
+2. Push to `main`.
+3. GitHub Actions compiles both PDFs and rebuilds the site.
+4. Both `/resume/resume-swe.pdf` and `/resume/resume-academic.pdf` are updated, and the `/cv` page (which has SWE/Academic tabs) reflects the change.
 
 ## Local Development
 
@@ -83,8 +124,9 @@ bundle exec jekyll serve --livereload
 # Install Typst (macOS)
 brew install typst
 
-# Compile resume
-typst compile resume/resume.typ resume/resume.pdf
+# Compile both resumes (--root . lets the templates read ../_data/*.yml)
+typst compile --root . resume/resume-swe.typ resume/resume-swe.pdf
+typst compile --root . resume/resume-academic.typ resume/resume-academic.pdf
 ```
 
 ## Adding Blog Posts
@@ -116,9 +158,13 @@ Your content here...
 │   └── js/              # JavaScript
 ├── public/              # Static assets (images, favicon)
 ├── resume/
-│   ├── resume.typ       # Typst source
-│   ├── resume.pdf       # Generated PDF
-│   └── resume-thumb.png # Generated thumbnail
+│   ├── _template.typ          # Shared Typst primitives
+│   ├── resume-swe.typ         # SWE resume source
+│   ├── resume-academic.typ    # Academic CV source
+│   ├── resume-swe.pdf         # Generated SWE PDF
+│   ├── resume-academic.pdf    # Generated academic CV PDF
+│   ├── resume.pdf             # Alias of resume-swe.pdf (backwards-compat)
+│   └── resume-thumb.png       # Generated thumbnail
 ├── index.html           # Homepage
 ├── blog.html            # Blog index
 ├── cv.html              # CV/Resume page

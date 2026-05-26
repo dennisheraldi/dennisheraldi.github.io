@@ -1,0 +1,18 @@
+# Publications & Awards. Used by the academic CV (resume-academic.pdf).
+# Not currently rendered on the website; not rendered on the SWE resume.
+#
+# Schema:
+#   title:      paper/award title (or descriptive name)
+#   venue:      conference/workshop name (italic on PDF)
+#   location:   location/host (right-aligned next to title on PDF)
+#   date:       month + year
+#   authors:    "F. D. Heraldi, A. Co-Author, B. Advisor". Leave null if not applicable.
+#   highlights: bullets describing contribution and impact
+
+- title: Sarcasm Detection Using Fine-tuned Llama 2     # TODO: replace with the exact paper title
+  venue: International Conference on Advanced Informatics (ICAICTA 2024)
+  location: Singapore
+  date: September 2024
+  authors: null                                          # TODO: add author list, e.g. "F. D. Heraldi, et al."
+  highlights:
+    - "**Best Paper Award.** Fine-tuned **Llama 2** for sarcasm detection on a curated dataset of **21,000+ samples**, **outperforming prior benchmarks by 8%**; explored prompt-engineering and parameter-efficient fine-tuning trade-offs to improve nuanced language understanding."

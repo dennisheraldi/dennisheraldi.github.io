@@ -1,4 +1,9 @@
-- title: Languages
+# Technical skills: single source of truth for website + PDF resume.
+#
+# `title` is what users see (PDF + homepage card heading).
+# `icon` is only used on the homepage (one of: code, layers, database, tool, cloud).
+
+- title: Programming Languages
   icon: code
   skills:
     - Java
@@ -6,9 +11,9 @@
     - PHP
     - Python
     - JavaScript
-    - Shell
+    - Shell Scripting
 
-- title: Frameworks
+- title: Frameworks & Libraries
   icon: layers
   skills:
     - Laravel
@@ -24,9 +29,9 @@
     - PostgreSQL
     - MySQL
     - ArangoDB
-    - Oracle
+    - Oracle Database
 
-- title: Tools
+- title: Tools & Platforms
   icon: tool
   skills:
     - RabbitMQ
@@ -34,12 +39,25 @@
     - OpenTelemetry
     - Vault
     - Consul
+    - Retrofit
+    - Figma
 
 - title: Cloud & DevOps
   icon: cloud
   skills:
-    - GCP
+    - Google Cloud Platform
     - AWS
     - Docker
     - Jenkins
 
+- title: AI / ML
+  icon: sparkles
+  skills:
+    - LangChain
+    - Ollama
+    - OpenRouter
+    - Llama 2
+    - Qwen
+    - Model Context Protocol (MCP)
+    - Prompt Engineering
+    - LLM Evaluation

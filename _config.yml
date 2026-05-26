@@ -33,11 +33,15 @@ exclude:
   - package-lock.json
   - README.md
   - tailwind.config.js
-  - resume/resume.typ
+  - resume/_template.typ
+  - resume/resume-swe.typ
+  - resume/resume-academic.typ
 
 # Include generated files
 include:
   - resume/resume.pdf
+  - resume/resume-swe.pdf
+  - resume/resume-academic.pdf
   - resume/resume-thumb.png
 
 # Collections

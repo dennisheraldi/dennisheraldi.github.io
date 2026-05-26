@@ -14,7 +14,7 @@ Here are some key lessons I learned along the way.
 
 ## 1. Idempotency is Non-Negotiable
 
-In payment systems, the worst thing that can happen is processing a transaction twice. Imagine charging a customer twice for the same order—nightmare scenario.
+In payment systems, the worst thing that can happen is processing a transaction twice. Imagine charging a customer twice for the same order. That's a nightmare scenario.
 
 ```go
 // Always use idempotency keys
@@ -60,7 +60,7 @@ Every transaction needs to be reconcilable. This means:
 - Having automated reconciliation jobs that run daily
 - Building tools for manual reconciliation when needed
 
-We implemented **RabbitMQ scheduling** for automated transaction reconciliation, which enabled instant execution of reconciliation report generation—a massive improvement over the manual processes we had before.
+We implemented **RabbitMQ scheduling** for automated transaction reconciliation, which enabled instant execution of reconciliation report generation. That was a massive improvement over the manual processes we had before.
 
 ## 4. Abstract Away Provider Differences
 
@@ -106,5 +106,5 @@ Building payment systems requires thinking about edge cases that rarely occur bu
 
 ---
 
-*What challenges have you faced building financial systems? I'd love to hear your experiences—reach out on [LinkedIn](https://linkedin.com/in/dennisheraldi)!*
+*What challenges have you faced building financial systems? I'd love to hear your experiences. Reach out on [LinkedIn](https://linkedin.com/in/dennisheraldi)!*
 

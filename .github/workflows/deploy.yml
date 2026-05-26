@@ -42,17 +42,20 @@ jobs:
       - name: Build Tailwind CSS
         run: npm run css:build
 
-      - name: Compile Resume (Typst to PDF)
+      - name: Compile Resumes (Typst to PDF)
         run: |
-          typst compile resume/resume.typ resume/resume.pdf
-          echo "Resume compiled successfully"
+          # --root . lets the templates read content from ../_data/*.yml
+          typst compile --root . resume/resume-swe.typ resume/resume-swe.pdf
+          typst compile --root . resume/resume-academic.typ resume/resume-academic.pdf
+          # Backwards-compat alias. Preserves the old /resume/resume.pdf URL.
+          cp resume/resume-swe.pdf resume/resume.pdf
+          echo "Resumes compiled successfully"
 
       - name: Generate Resume Thumbnail
         run: |
-          # Install pdftoppm for PDF to image conversion
           sudo apt-get update && sudo apt-get install -y poppler-utils
-          # Convert first page of PDF to PNG thumbnail
-          pdftoppm -png -f 1 -l 1 -scale-to 800 resume/resume.pdf resume/resume-thumb
+          # Thumbnail uses the SWE resume (the public default).
+          pdftoppm -png -f 1 -l 1 -scale-to 800 resume/resume-swe.pdf resume/resume-thumb
           mv resume/resume-thumb-1.png resume/resume-thumb.png
           echo "Thumbnail generated successfully"
 

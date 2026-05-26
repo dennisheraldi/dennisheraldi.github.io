@@ -1,9 +1,14 @@
-# This directory contains the resume source and generated files
-# 
-# Files:
-# - resume.typ       : Typst source (tracked)
-# - resume.pdf       : Generated PDF (built by GitHub Actions)
-# - resume-thumb.png : Generated thumbnail (built by GitHub Actions)
+# This directory contains resume sources and generated files.
 #
-# The PDF and thumbnail are generated automatically on every push.
-
+# Sources (tracked):
+# - _template.typ         : Shared Typst layout primitives
+# - resume-swe.typ        : Software-engineering resume source
+# - resume-academic.typ   : Academic CV source
+#
+# Generated (built by GitHub Actions on every push to main):
+# - resume-swe.pdf        : Software-engineering resume PDF
+# - resume-academic.pdf   : Academic CV PDF
+# - resume.pdf            : Alias of resume-swe.pdf (kept for backwards-compat)
+# - resume-thumb.png      : Thumbnail of the SWE resume
+#
+# All resume content lives in ../_data/*.yml. Edit there, not here.

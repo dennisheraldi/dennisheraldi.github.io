@@ -8,16 +8,17 @@ description: View and download my resume/CV
   <div class="max-w-5xl mx-auto px-6">
     <!-- Header -->
     <div
-      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8"
+      class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6"
     >
       <div>
         <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
           Resume / CV
         </h1>
-        <p class="text-muted">Last updated: December 2024</p>
+        <p class="text-muted">Last updated: {{ site.data.profile.last_updated }}</p>
       </div>
       <a
-        href="{{ '/resume/resume.pdf' | relative_url }}"
+        id="download-link"
+        href="{{ '/resume/resume-swe.pdf' | relative_url }}"
         download="Fachry_Dennis_Heraldi_Resume.pdf"
         class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
       >
@@ -36,6 +37,34 @@ description: View and download my resume/CV
         </svg>
         Download PDF
       </a>
+    </div>
+
+    <!-- Variant tabs (SWE vs Academic) -->
+    <div role="tablist" aria-label="Resume variant" class="inline-flex gap-1 p-1 mb-4 rounded-lg bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border">
+      <button
+        type="button"
+        role="tab"
+        id="tab-swe"
+        aria-selected="true"
+        data-variant="swe"
+        data-pdf="{{ '/resume/resume-swe.pdf' | relative_url }}"
+        data-filename="Fachry_Dennis_Heraldi_Resume.pdf"
+        class="px-4 py-2 text-sm font-medium rounded-md transition-colors bg-primary text-white"
+      >
+        Software Engineering
+      </button>
+      <button
+        type="button"
+        role="tab"
+        id="tab-academic"
+        aria-selected="false"
+        data-variant="academic"
+        data-pdf="{{ '/resume/resume-academic.pdf' | relative_url }}"
+        data-filename="Fachry_Dennis_Heraldi_Academic_CV.pdf"
+        class="px-4 py-2 text-sm font-medium rounded-md transition-colors text-muted hover:text-primary"
+      >
+        Academic CV
+      </button>
     </div>
 
     <!-- PDF Viewer Container -->
@@ -209,7 +238,8 @@ description: View and download my resume/CV
             </svg>
             <p class="mb-2">Failed to load PDF</p>
             <a
-              href="{{ '/resume/resume.pdf' | relative_url }}"
+              id="error-download-link"
+              href="{{ '/resume/resume-swe.pdf' | relative_url }}"
               class="text-primary hover:underline"
               >Download instead</a
             >
@@ -237,8 +267,6 @@ description: View and download my resume/CV
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
 
-  const pdfUrl = '{{ "/resume/resume.pdf" | relative_url }}';
-
   // DOM Elements
   const canvas = document.getElementById('pdf-canvas');
   const ctx = canvas.getContext('2d');
@@ -253,6 +281,9 @@ description: View and download my resume/CV
   const zoomInBtn = document.getElementById('zoom-in');
   const zoomOutBtn = document.getElementById('zoom-out');
   const fitWidthBtn = document.getElementById('fit-width');
+  const downloadLink = document.getElementById('download-link');
+  const errorDownloadLink = document.getElementById('error-download-link');
+  const tabs = document.querySelectorAll('[role="tab"][data-variant]');
 
   let pdfDoc = null;
   let pageNum = 1;
@@ -394,25 +425,69 @@ description: View and download my resume/CV
     }
   });
 
-  // Load the PDF
-  try {
-    const loadingTask = pdfjsLib.getDocument(pdfUrl);
-    pdfDoc = await loadingTask.promise;
+  // Load (or reload) a PDF by URL. Used both for initial load and tab switches.
+  async function loadPdf(url) {
+    canvas.classList.add('hidden');
+    errorEl.classList.add('hidden');
+    loadingEl.classList.remove('hidden');
+    pageNum = 1;
+    pdfDoc = null;
+    try {
+      const loadingTask = pdfjsLib.getDocument(url);
+      pdfDoc = await loadingTask.promise;
 
-    pageCountEl.textContent = pdfDoc.numPages;
-    loadingEl.classList.add('hidden');
-    canvas.classList.remove('hidden');
+      pageCountEl.textContent = pdfDoc.numPages;
+      loadingEl.classList.add('hidden');
+      canvas.classList.remove('hidden');
 
-    // Enable navigation buttons
-    prevBtn.disabled = false;
-    nextBtn.disabled = pdfDoc.numPages <= 1;
+      prevBtn.disabled = pageNum <= 1;
+      nextBtn.disabled = pdfDoc.numPages <= 1;
 
-    // Initial render - fit to width
-    await fitToWidth();
-  } catch (error) {
-    console.error('Error loading PDF:', error);
-    loadingEl.classList.add('hidden');
-    errorEl.classList.remove('hidden');
+      await fitToWidth();
+    } catch (error) {
+      console.error('Error loading PDF:', error);
+      loadingEl.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+    }
+  }
+
+  // Tab handlers. Switch between SWE and Academic PDFs.
+  function activateTab(tab) {
+    const url = tab.dataset.pdf;
+    const filename = tab.dataset.filename;
+
+    tabs.forEach((t) => {
+      const active = t === tab;
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active) {
+        t.classList.remove('text-muted', 'hover:text-primary');
+        t.classList.add('bg-primary', 'text-white');
+      } else {
+        t.classList.remove('bg-primary', 'text-white');
+        t.classList.add('text-muted', 'hover:text-primary');
+      }
+    });
+
+    if (downloadLink) {
+      downloadLink.href = url;
+      if (filename) downloadLink.download = filename;
+    }
+    if (errorDownloadLink) {
+      errorDownloadLink.href = url;
+    }
+
+    loadPdf(url);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => activateTab(tab));
+  });
+
+  // Initial load. Pick whichever tab is currently aria-selected (SWE by default).
+  const initialTab =
+    document.querySelector('[role="tab"][aria-selected="true"]') || tabs[0];
+  if (initialTab) {
+    await loadPdf(initialTab.dataset.pdf);
   }
 
   // Handle window resize
