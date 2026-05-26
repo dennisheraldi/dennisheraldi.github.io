@@ -34,7 +34,7 @@
 #let section-title(title) = {
   v(0.3em)
   text(weight: "bold", title)
-  v(-0.8em)
+  v(-0.3em)
   line(length: 100%, stroke: 0.6pt)
   v(0.2em)
 }
@@ -65,13 +65,29 @@
 }
 
 // --- Page setup helper -------------------------------------------------------
-// Call once at the top of each template to apply consistent typography.
+// Returns a `show` rule body that applies typography settings to the whole
+// document. Use it like:
+//
+//   #show: apply-page-setup.with(title: "...", author: "...")
+//
+// This pattern is required because `set` rules inside a regular function only
+// affect content returned by that function. By wrapping the body in a show rule,
+// the settings apply to the entire document.
 
-#let setup-page(title, author) = {
+#let apply-page-setup(
+  body,
+  title: "",
+  author: "",
+  margin: 0.4in,
+  leading: 0.4em,
+  spacing: 0.55em,
+  size: 10pt,
+) = {
   set document(title: title, author: author)
-  set page(paper: "a4", margin: (x: 0.5in, y: 0.5in))
-  set text(font: "Arial", size: 10pt, hyphenate: false)
-  set par(justify: true, leading: 0.5em)
+  set page(paper: "a4", margin: (x: margin, y: margin))
+  set text(font: "Arial", size: size, hyphenate: false)
+  set par(justify: true, leading: leading, spacing: spacing)
+  body
 }
 
 // --- Header block (name + summary on left; contact on right) ----------------
@@ -95,7 +111,7 @@
       ]
     ],
   )
-  v(0.5em)
+  v(0.2em)
 }
 
 // --- Section: Work Experience -----------------------------------------------
@@ -105,7 +121,7 @@
   section-title("Work Experience")
   for (i, job) in experience.enumerate() {
     let same-company-as-prev = i > 0 and experience.at(i - 1).company == job.company
-    if i > 0 { v(if same-company-as-prev { 0.2em } else { 0.5em }) }
+    if i > 0 { v(if same-company-as-prev { 0.1em } else { 0.3em }) }
 
     // Suppress company header + description on consecutive same-company entries
     // (e.g. promotions) so the role row stacks cleanly under the company.
@@ -116,7 +132,7 @@
     if not same-company-as-prev and "description" in job and job.description != none {
       text(size: 9pt, fill: muted, job.description)
     }
-    v(0.2em)
+    v(0.1em)
 
     // Combine shared `highlights` with audience-specific extras (preserving order).
     let bullets = job.at("highlights", default: ())
@@ -132,17 +148,18 @@
 
 // --- Section: Education ------------------------------------------------------
 
-#let education-section(education) = {
+#let education-section(education, show-coursework: true) = {
   section-title("Education")
   for (i, ed) in education.enumerate() {
-    if i > 0 { v(0.3em) }
+    if i > 0 { v(0.2em) }
     entry-header(ed.school, ed.at("period_full", default: ed.period))
     entry-subheader(ed.degree, "CGPA: " + ed.gpa)
-    v(0.2em)
-    if "coursework" in ed and ed.coursework != none {
+    if show-coursework and "coursework" in ed and ed.coursework != none {
+      v(0.1em)
       bullet-item(md("**Relevant Coursework**: " + ed.coursework.join(", ")))
     }
     if "thesis" in ed and ed.thesis != none {
+      v(0.1em)
       bullet-item(md("**Thesis**: " + ed.thesis))
     }
   }
@@ -165,14 +182,13 @@
 #let awards-section(awards) = {
   section-title("Publications & Awards")
   for (i, a) in awards.enumerate() {
-    if i > 0 { v(0.4em) }
+    if i > 0 { v(0.2em) }
     entry-header(a.title, a.at("location", default: ""))
     entry-subheader(a.at("venue", default: ""), a.at("date", default: ""))
     if "authors" in a and a.authors != none {
-      v(0.1em)
       text(size: 9pt, fill: muted, a.authors)
     }
-    v(0.2em)
+    v(0.1em)
     for h in a.at("highlights", default: ()) {
       bullet-item(md(h))
     }

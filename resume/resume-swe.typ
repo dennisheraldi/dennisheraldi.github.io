@@ -9,7 +9,14 @@
 #let education = yaml("../_data/education.yml")
 #let skills = yaml("../_data/skills.yml")
 
-#setup-page(profile.name + " Resume", profile.name)
+#show: apply-page-setup.with(
+  title: profile.name + " Resume",
+  author: profile.name,
+  margin: 0.3in,
+  leading: 0.3em,
+  spacing: 0.45em,
+  size: 9.5pt,
+)
 
 // Header uses the default `summary` (SWE-flavored).
 #resume-header(profile, profile.summary)
@@ -17,6 +24,8 @@
 // Sections ordered for software-engineering readers.
 #work-experience(experience, audience: "swe")
 
-#education-section(education)
+// Coursework is hidden on the SWE resume to save vertical space; it's still
+// present in education.yml and shown on the academic CV + the homepage.
+#education-section(education, show-coursework: false)
 
 #skills-section(skills)

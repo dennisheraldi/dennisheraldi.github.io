@@ -11,7 +11,14 @@
 #let skills = yaml("../_data/skills.yml")
 #let awards = yaml("../_data/awards.yml")
 
-#setup-page(profile.name + " Academic CV", profile.name)
+#show: apply-page-setup.with(
+  title: profile.name + " Academic CV",
+  author: profile.name,
+  margin: 0.3in,
+  leading: 0.3em,
+  spacing: 0.45em,
+  size: 9.5pt,
+)
 
 // Header uses the academic-flavored summary.
 #resume-header(profile, profile.at("summary_academic", default: profile.summary))

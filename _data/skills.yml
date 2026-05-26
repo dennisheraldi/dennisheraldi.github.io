@@ -31,7 +31,7 @@
     - ArangoDB
     - Oracle Database
 
-- title: Tools & Platforms
+- title: Tools & Infrastructure
   icon: tool
   skills:
     - RabbitMQ
@@ -39,16 +39,10 @@
     - OpenTelemetry
     - Vault
     - Consul
-    - Retrofit
-    - Figma
-
-- title: Cloud & DevOps
-  icon: cloud
-  skills:
-    - Google Cloud Platform
-    - AWS
     - Docker
     - Jenkins
+    - Google Cloud Platform
+    - AWS
 
 - title: AI / ML
   icon: sparkles

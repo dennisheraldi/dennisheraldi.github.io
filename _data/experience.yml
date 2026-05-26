@@ -27,11 +27,10 @@
   description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
   current: true
   highlights:
-    - "**Pioneered AI integration at company** by building **AI Email Interpreter** in Java with **LangChain on self-hosted Ollama (qwen3-8b)** that converts raw multilingual client emails into structured order-status-update payloads, with **few-shot prompting, confidence-thresholded inference, and human-in-the-loop fallback** for safety; delivered end-to-end PoC in **3 days for a client hackathon** and was **showcased at MWC Barcelona 2026** by pre-sales as the flagship order-to-inbox capability."
-    - "**Won 2nd place in internal AI competition** by architecting an **AI-Assisted API Transformation engine** that converts natural-language instructions into transformation scripts, **substantially reducing manual API mapping effort** for the customer onboarding workflow."
-    - "**Delivered AI Analytics PoC** that exposes the production database to business users via an **MCP-backed conversational interface**, enabling self-service exploration of operational data without writing SQL."
-    - "**Lead developer for Banking & Financial Solutions (BFS)**, driving **10+ international BFS demos including Sibos**, owning microservice configuration in the demo environment and acting as **first-line on-call** for incident triage and resolution."
-    - "**Shipped supporting AI tooling** including a **PDF reader that extracts client financial statements into analytics-ready tables** and an **MCP server orchestrating API operations** through a unified framework, accelerating subsequent BFS demo turnaround."
+    - "**Pioneered AI integration at company** by building **AI Email Interpreter** in Java with **LangChain on self-hosted Ollama (qwen3-8b)**, converting raw multilingual client emails into structured order-status-update payloads with **few-shot prompting and confidence-thresholded human-in-the-loop fallback**; delivered the PoC in **3 days for a client hackathon** and **showcased at MWC Barcelona 2026** as the flagship order-to-inbox capability."
+    - "**Won 2nd place in internal AI competition** with an **AI-Assisted API Transformation engine** that converts natural-language instructions into transformation scripts, **substantially reducing manual API mapping effort** for customer onboarding."
+    - "**Delivered AI Analytics PoC** exposing the production database to business users via an **MCP-backed conversational interface**, enabling self-service exploration without writing SQL."
+    - "**Lead developer for Banking & Financial Solutions (BFS)**, driving **10+ international demos including Sibos**, owning the demo environment and acting as **first-line on-call**; shipped supporting AI tooling (a **PDF financial-statement extractor** and an **MCP server for API orchestration**) that accelerated demo turnaround."
 
 - company: CSG International
   role: Software Developer Engineer I
@@ -42,9 +41,8 @@
   description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
   current: false
   highlights:
-    - "**Contributed to development that earned company TMForum DTW 2025 award** by architecting innovative engine for **intent-driven network API transformations** as MVP of Catalyst project in **collaboration with Ericsson**, demonstrating cutting-edge telecom automation capabilities."
-    - "**Achieved zero transaction failures** by implementing comprehensive end-to-end recovery mechanism with **idempotency features, process engine auto-retry, and enhanced internal error handling**, ensuring **100% transaction reliability and recovery** for critical business operations."
-    - "**Delivered ready-to-go product solutions** by improving **50 customized XML product specifications**, refining core business processes, and modernizing Java microservices, **enhancing client configuration efficiency**."
+    - "**Earned company TMForum DTW 2025 award** by architecting an engine for **intent-driven network API transformations** as MVP of a Catalyst project in **collaboration with Ericsson**."
+    - "**Achieved zero transaction failures** by implementing end-to-end recovery with **idempotency, process-engine auto-retry, and enhanced internal error handling**, ensuring **100% transaction reliability** for critical business operations."
 
 # ---------- Paper.id --------------------------------------------------------
 
@@ -57,10 +55,9 @@
   description: Paper.id is a platform providing invoicing, payment, and financing solutions for businesses.
   current: false
   highlights:
-    - "**Accelerated message template creation from hours to under a minute** by integrating third-party SMS and WhatsApp broadcast messaging services with **concurrent Goroutines processing**, enabling scalable communication capabilities for business operations."
-    - "**Architected unified payment engine** by developing generalized solution that handles **diverse bank behaviors and merchant-specific requirements**, enabling seamless multi-party integrations while **maintaining system consistency across multiple financial partnerships**."
-    - "**Achieved 99% transaction success rate** by implementing functionality for QRIS payment, direct transfers, virtual accounts, and cross-border remittances compliant with **Indonesia's Central Bank standards**, contributing to Total Payment Volume (TPV) by **4 billion IDR** in a month."
-    - "**Enhanced system robustness** by implementing **dynamic table partitioning and automated transaction reconciliation** with RabbitMQ scheduling and asynchronous transaction callbacks, **increasing query performance by 20%** and **enabling instant execution of reconciliation report generation**."
+    - "**Accelerated message template creation from hours to under a minute** by integrating third-party SMS and WhatsApp broadcast services with **concurrent Goroutines processing**."
+    - "**Architected a unified payment engine** that handles **diverse bank behaviors and merchant-specific requirements** for QRIS, direct transfer, virtual account, and cross-border remittance flows compliant with **Indonesia's Central Bank standards**, achieving a **99% transaction success rate** and contributing **4 billion IDR TPV** in a month."
+    - "**Enhanced system robustness** with **dynamic table partitioning and automated transaction reconciliation** over RabbitMQ scheduling and async callbacks, **improving query performance by 20%** and enabling instant reconciliation reports."
 
 # ---------- Suitmedia -------------------------------------------------------
 
@@ -70,11 +67,9 @@
   location_short: Bandung
   period: May 2023 - Sep 2023
   period_full: May 2023 - September 2023
-  description: Suitmedia is a digital agency specializing in technology and marketing, providing solutions and strategic partnerships.
   current: false
   highlights:
-    - "**Delivered comprehensive CMS solution** by designing and implementing **35 dynamic menus and 50 API endpoints** using Laravel framework with efficient database schemas inferred from Figma prototypes, **ensuring seamless front-end integration** and enhanced website functionality for client requirements."
-    - "**Optimized system performance and content delivery** by redesigning database structures and implementing dynamic content management with static page integration, **resulting in improved query performance by 30%** and enhanced client usability across both dynamic and static website pages."
+    - "Built a Laravel-based CMS for a client with **35 dynamic menus and 50 API endpoints** from Figma prototypes, redesigning database schemas and ETL flows to **improve query performance by 30%**."
 
 # ---------- Synpulse --------------------------------------------------------
 
@@ -84,8 +79,6 @@
   location_short: Jakarta
   period: Oct 2022 - Dec 2022
   period_full: October 2022 - December 2022
-  description: Synpulse is a management consulting firm serving financial services providers.
   current: false
   highlights:
-    - "**Streamlined core banking system migration** by authoring functional requirements for **20 system specifications**, mapping existing to new API specifications and building system flowcharts that kept **Banking Client's Avaloq transition project on schedule**."
-    - "**Eliminated manual daily data processing** by developing automated shell scripts for Excel-to-Oracle database conversion, **reducing reconciliation report processing from 15 minutes to instant execution** and ensuring seamless core banking system migration for **Banking Client**."
+    - "Supported a **Banking Client's Avaloq core-banking migration** by authoring **20 system specifications** and automating Excel-to-Oracle reconciliation scripts that **cut report processing from 15 minutes to instant**."
