@@ -3,6 +3,38 @@ layout: default
 title: Dennis Heraldi | Software Engineer
 ---
 
+{%- comment -%}
+  Person JSON-LD: helps search engines build a knowledge panel for the name
+  "Fachry Dennis Heraldi" by linking name, role, location, and external profiles.
+  This supplements (does not conflict with) the WebPage schema emitted by
+  jekyll-seo-tag.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.data.profile.name | default: site.author }}",
+  "url": "{{ site.url }}{{ site.baseurl }}",
+  "image": "{{ site.url }}{{ '/public/img/og-image.jpg' | relative_url }}",
+  "jobTitle": "{{ site.data.profile.title | default: 'Software Engineer' }}",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "CSG International"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Jakarta",
+    "addressCountry": "Indonesia"
+  },
+  "email": "mailto:{{ site.email }}",
+  "sameAs": [
+    "https://linkedin.com/in/{{ site.linkedin_username }}",
+    "https://github.com/{{ site.github_username }}"
+  ]
+}
+</script>
+
+
 <!-- Hero Section -->
 <section id="hero" class="relative overflow-hidden min-h-screen flex items-center pt-20">
   <div class="hero-grid" aria-hidden="true"></div>
@@ -174,11 +206,57 @@ title: Dennis Heraldi | Software Engineer
   </div>
 </section>
 
+<!-- Writing Section -->
+<section id="writing" class="py-20 bg-light-card dark:bg-dark-card">
+  <div class="max-w-5xl mx-auto px-6 reveal">
+    <div class="flex items-center gap-4 mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+        <span class="text-primary font-mono text-base md:text-xl font-normal mr-3">03.</span>Latest Writing
+      </h2>
+      <div class="h-px bg-light-border dark:bg-dark-border flex-grow"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for post in site.posts limit: 3 %}
+      <a href="{{ post.url | relative_url }}" class="group flex flex-col p-6 rounded-xl bg-white dark:bg-dark border border-light-border dark:border-dark-border transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg dark:hover:shadow-primary/5">
+        <p class="text-primary font-mono text-xs mb-3">{{ post.date | date: "%b %d, %Y" }}</p>
+        <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h3>
+        {% if post.description %}
+        <p class="text-sm text-muted line-clamp-3 mb-4">{{ post.description }}</p>
+        {% endif %}
+        {% if post.tags %}
+        <div class="flex flex-wrap gap-1 mb-4">
+          {% for tag in post.tags limit: 3 %}
+          <span class="px-2 py-0.5 text-xs bg-light-border dark:bg-dark-border rounded text-muted">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="mt-auto inline-flex items-center gap-2 text-sm text-primary font-medium">
+          Read more
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-16">
+      <a href="{{ '/blog' | relative_url }}" class="inline-flex items-center gap-2 px-6 py-3 border border-light-border dark:border-dark-border rounded-lg hover:border-primary hover:text-primary transition-colors">
+        View all posts
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Contact Section -->
 <section id="contact" class="py-20">
   <div class="max-w-5xl mx-auto px-6 reveal">
     <div class="max-w-2xl mx-auto text-center">
-      <p class="text-primary font-mono text-sm mb-4">03. What's Next?</p>
+      <p class="text-primary font-mono text-sm mb-4">04. What's Next?</p>
       <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
       <p class="text-muted text-lg mb-10">
         I'm currently open to new opportunities and would love to hear from you.

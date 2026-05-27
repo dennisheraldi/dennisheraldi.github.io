@@ -10,6 +10,22 @@ baseurl: ""
 github_username: dennisheraldi
 linkedin_username: dennisheraldi
 
+# Default Open Graph / Twitter image used by jekyll-seo-tag on every page
+# (overridable per-page via `image:` in front matter).
+image: /public/img/og-image.jpg
+
+# Upgrade Twitter card to large image (was summary by default).
+twitter:
+  username: dennisheraldi
+  card: summary_large_image
+
+# Used by jekyll-seo-tag to emit Person sameAs links.
+social:
+  name: Fachry Dennis Heraldi
+  links:
+    - https://linkedin.com/in/dennisheraldi
+    - https://github.com/dennisheraldi
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
@@ -57,9 +73,14 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  - scope:
+      path: ""
+    values:
+      image: /public/img/og-image.jpg
 
 # Plugins (GitHub Pages compatible)
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-sitemap
 
