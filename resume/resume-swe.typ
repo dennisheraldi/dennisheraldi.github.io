@@ -8,6 +8,7 @@
 #let experience = yaml("../_data/experience.yml")
 #let education = yaml("../_data/education.yml")
 #let skills = yaml("../_data/skills.yml")
+#let awards = yaml("../_data/awards.yml")
 
 #show: apply-page-setup.with(
   title: profile.name + " Resume",
@@ -24,8 +25,10 @@
 // Sections ordered for software-engineering readers.
 #work-experience(experience, audience: "swe")
 
-// Coursework is hidden on the SWE resume to save vertical space; it's still
-// present in education.yml and shown on the academic CV + the homepage.
-#education-section(education, show-coursework: false)
+#education-section(education)
+
+// Awards section uses a more SWE-friendly title and is filtered to entries
+// tagged audience: "swe" or "both" (the academic-only RubBot entry is hidden).
+#awards-section(awards, audience: "swe", title: "Awards & Recognition")
 
 #skills-section(skills)

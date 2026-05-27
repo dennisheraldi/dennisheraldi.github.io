@@ -10,6 +10,7 @@
 #let education = yaml("../_data/education.yml")
 #let skills = yaml("../_data/skills.yml")
 #let awards = yaml("../_data/awards.yml")
+#let teaching = yaml("../_data/teaching.yml")
 
 #show: apply-page-setup.with(
   title: profile.name + " Academic CV",
@@ -26,11 +27,17 @@
 // Education leads on academic CVs.
 #education-section(education)
 
-// Publications & Awards is the second section. It surfaces the ICAICTA paper.
-#awards-section(awards)
+// Publications & Awards. Filters entries to those tagged audience: "academic"
+// or "both" (e.g. ICAICTA paper + RubBot competition win).
+#awards-section(awards, audience: "academic")
 
-// Work Experience appears next; uses audience: "academic" so any
-// academic-flavored bullets in experience.yml get appended.
+// Teaching Experience: academic service, slotted between research output and
+// industry experience.
+#teaching-section(teaching)
+
+// Work Experience appears next; audience filter hides Synpulse on this CV
+// (it's tagged audience: "swe") and the audience: "academic" path on each
+// remaining entry merges in any academic-flavored bullets.
 #work-experience(experience, audience: "academic")
 
 #skills-section(skills)

@@ -6,20 +6,19 @@ title: Software Engineer
 
 # `summary` is the default. It powers the homepage hero and the SWE PDF resume.
 summary: >-
-  Software engineer experienced in integrating diverse microservices into
-  unified solutions. Adaptive to new tech, focused on building reliable,
-  failure-tolerant systems, and dedicated to clear documentation and
-  knowledge sharing.
+  Software engineer with experience integrating different microservices into
+  one connected solution. Quick to adapt to new technology, focused on
+  building reliable systems that can recover from failures, and committed to
+  clear documentation and knowledge sharing.
 
 # `summary_academic` is used only by the academic CV PDF (resume-academic.pdf)
 # and is angled toward AI/ML graduate program applications. Edit freely.
 summary_academic: >-
   Software engineer with a research interest in applied LLMs and natural
-  language processing. Recipient of the ICAICTA 2024 Best Paper Award for
-  fine-tuning Llama 2 on sarcasm detection. Currently pioneering AI
-  integration at CSG, shipping LLM-powered systems with prompt engineering,
-  confidence-thresholded inference, and human-in-the-loop safety. Seeking
-  graduate study to pursue rigorous research in AI/ML.
+  language processing. Winner of the ICAICTA 2024 Best Paper Award for
+  fine-tuning Llama 2 on sarcasm detection. Currently building LLM-based
+  systems at CSG with prompt engineering, confidence-based decisions, and
+  manual review for safety. Looking to pursue graduate study in AI/ML.
 
 location: Jakarta, Indonesia
 phone: "+62 882 1185 4646"

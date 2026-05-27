@@ -118,9 +118,17 @@
 // `audience` is "swe" or "academic"; selects which extra highlights to merge in.
 
 #let work-experience(experience, audience: "swe") = {
+  // Filter entries by `audience` field: "both" (default) shows on both resumes,
+  // "swe" or "academic" restricts to a single audience.
+  let visible = experience.filter(j => {
+    let aud = j.at("audience", default: "both")
+    aud == "both" or aud == audience
+  })
+  if visible.len() == 0 { return }
+
   section-title("Work Experience")
-  for (i, job) in experience.enumerate() {
-    let same-company-as-prev = i > 0 and experience.at(i - 1).company == job.company
+  for (i, job) in visible.enumerate() {
+    let same-company-as-prev = i > 0 and visible.at(i - 1).company == job.company
     if i > 0 { v(if same-company-as-prev { 0.1em } else { 0.3em }) }
 
     // Suppress company header + description on consecutive same-company entries
@@ -177,11 +185,35 @@
   }
 }
 
+// --- Section: Teaching Experience -------------------------------------------
+
+#let teaching-section(teaching, title: "Teaching Experience") = {
+  if teaching.len() == 0 { return }
+  section-title(title)
+  for (i, t) in teaching.enumerate() {
+    if i > 0 { v(0.2em) }
+    entry-header(t.institution, t.at("location", default: ""))
+    entry-subheader(t.role, t.at("period_full", default: t.period))
+    v(0.1em)
+    for h in t.at("highlights", default: ()) {
+      bullet-item(md(h))
+    }
+  }
+}
+
 // --- Section: Publications & Awards (academic only) -------------------------
 
-#let awards-section(awards) = {
-  section-title("Publications & Awards")
-  for (i, a) in awards.enumerate() {
+#let awards-section(awards, audience: "academic", title: "Publications & Awards") = {
+  // Filter entries by their `audience` field: "both" (default) shows on both,
+  // "swe" or "academic" restricts to just one.
+  let visible = awards.filter(a => {
+    let aud = a.at("audience", default: "both")
+    aud == "both" or aud == audience
+  })
+  if visible.len() == 0 { return }
+
+  section-title(title)
+  for (i, a) in visible.enumerate() {
     if i > 0 { v(0.2em) }
     entry-header(a.title, a.at("location", default: ""))
     entry-subheader(a.at("venue", default: ""), a.at("date", default: ""))

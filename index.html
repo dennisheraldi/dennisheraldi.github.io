@@ -5,6 +5,7 @@ title: Dennis Heraldi | Software Engineer
 
 <!-- Hero Section -->
 <section id="hero" class="relative overflow-hidden min-h-screen flex items-center pt-20">
+  <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-spotlight" aria-hidden="true"></div>
   <div class="relative z-10 max-w-5xl mx-auto px-6 py-20">
     <div class="max-w-3xl">
@@ -41,13 +42,15 @@ title: Dennis Heraldi | Software Engineer
 
 <!-- Experience Section -->
 <section id="experience" class="py-20 bg-light-card dark:bg-dark-card">
-  <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6 reveal">
     <div class="flex items-center gap-4 mb-12">
-      <h2 class="text-2xl md:text-3xl font-bold whitespace-nowrap">Work Experience</h2>
+      <h2 class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+        <span class="text-primary font-mono text-base md:text-xl font-normal mr-3">01.</span>Work Experience
+      </h2>
       <div class="h-px bg-light-border dark:bg-dark-border flex-grow"></div>
     </div>
 
-    <div class="max-w-3xl">
+    <div class="max-w-3xl mx-auto">
       {% for job in site.data.experience %}
       {%- comment -%}
         Detect same-company sub-roles (promotions). When the current entry shares a
@@ -118,15 +121,17 @@ title: Dennis Heraldi | Software Engineer
 
 <!-- Skills Section -->
 <section id="skills" class="py-20">
-  <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6 reveal">
     <div class="flex items-center gap-4 mb-12">
-      <h2 class="text-2xl md:text-3xl font-bold whitespace-nowrap">Technical Skills</h2>
+      <h2 class="text-2xl md:text-3xl font-bold whitespace-nowrap">
+        <span class="text-primary font-mono text-base md:text-xl font-normal mr-3">02.</span>Technical Skills
+      </h2>
       <div class="h-px bg-light-border dark:bg-dark-border flex-grow"></div>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {% for category in site.data.skills %}
-      <div class="p-6 rounded-xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border">
+      <div class="p-6 rounded-xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg dark:hover:shadow-primary/5">
         <div class="flex items-center gap-3 mb-4">
           <div class="p-2 rounded-lg bg-primary/10 text-primary">
             {% if category.icon == 'code' %}
@@ -171,9 +176,9 @@ title: Dennis Heraldi | Software Engineer
 
 <!-- Contact Section -->
 <section id="contact" class="py-20">
-  <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-5xl mx-auto px-6 reveal">
     <div class="max-w-2xl mx-auto text-center">
-      <p class="text-primary font-mono text-sm mb-4">What's Next?</p>
+      <p class="text-primary font-mono text-sm mb-4">03. What's Next?</p>
       <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
       <p class="text-muted text-lg mb-10">
         I'm currently open to new opportunities and would love to hear from you.
@@ -242,6 +247,32 @@ title: Dennis Heraldi | Software Engineer
     hero.addEventListener('mouseleave', () => {
       spotlight.classList.remove('is-active');
     });
+  })();
+
+  // Reveal-on-scroll: fade + slide elements into view once when they appear.
+  // Falls back to instantly visible if IntersectionObserver isn't available.
+  (() => {
+    const targets = document.querySelectorAll('.reveal');
+    if (targets.length === 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    targets.forEach((el) => observer.observe(el));
   })();
 </script>
 

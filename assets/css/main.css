@@ -34,6 +34,40 @@
   }
 }
 
+/* Hero dotted-grid backdrop. Sits beneath the spotlight so the cursor glow
+   reveals the dots more brightly as it passes over them. Edges fade out via
+   a radial mask so the pattern doesn't feel like a hard wallpaper. */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(100, 116, 139, 0.18) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 35%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 35%,
+    transparent 80%
+  );
+}
+
+.dark .hero-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(148, 163, 184, 0.16) 1px,
+    transparent 0
+  );
+}
+
 /* Hero spotlight: a soft blurred gradient blob that lazily follows the cursor.
    Position is driven by `--mx` / `--my` CSS variables set in JS. */
 .hero-spotlight {
@@ -41,7 +75,7 @@
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .hero-spotlight::before {
@@ -81,6 +115,28 @@
   (prefers-reduced-motion: reduce) {
   .hero-spotlight {
     display: none;
+  }
+}
+
+/* Reveal-on-scroll: elements with `.reveal` start invisible and animate in once
+   when they enter the viewport (toggled via IntersectionObserver in JS). */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
