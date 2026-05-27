@@ -51,14 +51,6 @@ jobs:
           cp resume/resume-swe.pdf resume/resume.pdf
           echo "Resumes compiled successfully"
 
-      - name: Generate Resume Thumbnail
-        run: |
-          sudo apt-get update && sudo apt-get install -y poppler-utils
-          # Thumbnail uses the SWE resume (the public default).
-          pdftoppm -png -f 1 -l 1 -scale-to 800 resume/resume-swe.pdf resume/resume-thumb
-          mv resume/resume-thumb-1.png resume/resume-thumb.png
-          echo "Thumbnail generated successfully"
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

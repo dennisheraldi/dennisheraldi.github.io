@@ -48,8 +48,7 @@ resume/
 ├── resume-academic.typ      # Academic CV renderer
 ├── resume-swe.pdf           # Generated (auto-built)
 ├── resume-academic.pdf      # Generated (auto-built)
-├── resume.pdf               # Backwards-compat alias of resume-swe.pdf
-└── resume-thumb.png         # Generated thumbnail (auto-built)
+└── resume.pdf               # Backwards-compat alias of resume-swe.pdf
 ```
 
 ### Bullet formatting
@@ -163,8 +162,7 @@ Your content here...
 │   ├── resume-academic.typ    # Academic CV source
 │   ├── resume-swe.pdf         # Generated SWE PDF
 │   ├── resume-academic.pdf    # Generated academic CV PDF
-│   ├── resume.pdf             # Alias of resume-swe.pdf (backwards-compat)
-│   └── resume-thumb.png       # Generated thumbnail
+│   └── resume.pdf             # Alias of resume-swe.pdf (backwards-compat)
 ├── index.html           # Homepage
 ├── blog.html            # Blog index
 ├── cv.html              # CV/Resume page
