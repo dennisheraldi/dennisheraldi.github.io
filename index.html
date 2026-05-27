@@ -4,8 +4,9 @@ title: Dennis Heraldi | Software Engineer
 ---
 
 <!-- Hero Section -->
-<section class="min-h-screen flex items-center pt-20">
-  <div class="max-w-5xl mx-auto px-6 py-20">
+<section id="hero" class="relative overflow-hidden min-h-screen flex items-center pt-20">
+  <div class="hero-spotlight" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-20">
     <div class="max-w-3xl">
       <p class="text-primary font-mono text-sm mb-4 opacity-0 animate-fade-in">
         Hi, my name is
@@ -196,4 +197,51 @@ title: Dennis Heraldi | Software Engineer
     </div>
   </div>
 </section>
+
+<script>
+  // Hero spotlight: lerps a soft gradient blob toward the cursor.
+  // Skipped on touch devices and when the user prefers reduced motion (CSS
+  // hides the element in those cases, so this script just no-ops).
+  (() => {
+    const hero = document.getElementById('hero');
+    const spotlight = hero && hero.querySelector('.hero-spotlight');
+    if (!hero || !spotlight) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    let targetX = 0.5;
+    let targetY = 0.5;
+    let currentX = 0.5;
+    let currentY = 0.5;
+    let raf = null;
+
+    const tick = () => {
+      // Ease toward the target each frame for a soft, lazy follow.
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      spotlight.style.setProperty('--mx', currentX * 100 + '%');
+      spotlight.style.setProperty('--my', currentY * 100 + '%');
+
+      const dx = Math.abs(targetX - currentX);
+      const dy = Math.abs(targetY - currentY);
+      if (dx > 0.0005 || dy > 0.0005) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = null;
+      }
+    };
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width;
+      targetY = (e.clientY - rect.top) / rect.height;
+      spotlight.classList.add('is-active');
+      if (raf == null) raf = requestAnimationFrame(tick);
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      spotlight.classList.remove('is-active');
+    });
+  })();
+</script>
 
