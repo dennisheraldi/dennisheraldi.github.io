@@ -46,10 +46,10 @@
   description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
   current: false
   highlights:
-    - "Helped the company **win the TMForum DTW 2025 award** by building an engine for **intent-driven network API transformations** as the MVP of a Catalyst project, **together with Ericsson**."
+    - "**Engineered an engine for intent-driven network API transformations** as the MVP of a Catalyst project, **contributing to the company winning the TMForum DTW 2025 award** with Ericsson."
     - "**Reached zero transaction failures** by adding end-to-end recovery with **idempotency, process-engine auto-retry, and stronger internal error handling**, keeping critical business operations reliable."
   highlights_swe:
-    - "**Improved 50 customized XML product specifications**, refined core business processes, and modernized Java microservices to make it easier for clients to configure the product."
+    - "**Modernized 50 customized XML product specifications** and Java microservices, refining core business processes to make it easier for clients to configure the product."
 
 # ---------- Paper.id --------------------------------------------------------
 
@@ -65,7 +65,7 @@
     - "**Cut message template creation from hours to under a minute** by integrating third-party SMS and WhatsApp broadcast services with **concurrent Goroutines processing**."
     - "**Built a unified payment engine** with a generalized design that handles **different bank behaviors and merchant-specific requirements**, making it easier to integrate with multiple parties while **keeping the system consistent across financial partnerships**."
     - "**Reached a 99% transaction success rate** by implementing QRIS, direct transfer, virtual account, and cross-border remittance flows that follow **Indonesia's Central Bank standards**, contributing **4 billion IDR TPV** in a month."
-    - "**Made the system more robust** by adding **dynamic table partitioning and automated transaction reconciliation** through RabbitMQ scheduling and async callbacks, **improving query performance by 20%** and making reconciliation reports run instantly."
+    - "**Hardened the system** by adding **dynamic table partitioning and automated transaction reconciliation** through RabbitMQ scheduling and async callbacks, **improving query performance by 20%** and making reconciliation reports run instantly."
 
 # ---------- Suitmedia -------------------------------------------------------
 
@@ -79,7 +79,7 @@
   highlights:
     - "Built a **Laravel-based CMS** with **35 dynamic menus and 50 API endpoints** from Figma prototypes, with database schemas designed for **smooth integration with the front-end**."
   highlights_swe:
-    - "**Improved system performance and content delivery** by redesigning database structures and adding dynamic content management with static page integration, **improving query performance by 30%** and making the site easier to use across both dynamic and static pages."
+    - "**Redesigned database structures** and implemented **dynamic content management with static page integration**, **improving query performance by 30%** and enhancing the user experience across both dynamic and static pages."
 
 # ---------- Synpulse --------------------------------------------------------
 
@@ -92,5 +92,5 @@
   current: false
   audience: swe
   highlights:
-    - "Supported the **core banking system migration** by writing **20 functional requirement specifications**, mapping API specifications, and creating system flowcharts that kept the **Banking Client's Avaloq transition project on schedule**."
+    - "**Authored 20 functional requirement specifications** and mapped API specifications for a **core banking system migration**, creating system flowcharts that kept the **Banking Client's Avaloq transition project on schedule**."
     - "**Removed manual daily data processing** by writing automated **Excel-to-Oracle shell scripts**, cutting reconciliation report processing **from 15 minutes to near-instant**."
