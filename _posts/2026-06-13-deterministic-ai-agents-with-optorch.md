@@ -14,6 +14,75 @@ I recently built an agent that takes a long, messy document and turns it into a 
 
 Here are the lessons that transferred beyond this one project.
 
+## The shape of the pipeline
+
+The mental model is simple: a document goes in, the orchestrator runs a fixed sequence of small nodes, and structured records come out. Each node does one job with its own prompt and tools, and the order is configuration rather than something the model decides.
+
+<svg role="img" aria-label="A vertical pipeline: a document enters, passes through five ordered nodes (extract, enrich, reconcile and validate, persist records, create output), and produces a structured result." viewBox="0 0 720 580" style="width:100%;max-width:520px;height:auto;display:block;margin:2rem auto;font-family:'DM Sans',system-ui,sans-serif;">
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor" fill-opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <!-- grouping bracket -->
+  <path d="M162,66 H150 V492 H162" fill="none" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text transform="translate(132,279) rotate(-90)" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity="0.55">deterministic node graph</text>
+
+  <!-- input -->
+  <rect x="285" y="10" width="150" height="36" rx="18" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35"/>
+  <text x="360" y="33" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">Document in</text>
+
+  <!-- arrows + nodes -->
+  <line x1="360" y1="46" x2="360" y2="66" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="234" y="66" width="252" height="58" rx="10" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.35"/>
+  <circle cx="234" cy="95" r="15" fill="#2563eb"/>
+  <text x="234" y="99" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1</text>
+  <text x="362" y="91" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Extract</text>
+  <text x="362" y="109" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity="0.6">LLM call, returns JSON</text>
+
+  <line x1="360" y1="124" x2="360" y2="158" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="234" y="158" width="252" height="58" rx="10" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.35"/>
+  <circle cx="234" cy="187" r="15" fill="#2563eb"/>
+  <text x="234" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">2</text>
+  <text x="362" y="183" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Enrich</text>
+  <text x="362" y="201" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity="0.6">external async AI</text>
+  <text x="500" y="192" text-anchor="start" font-size="12" fill="currentColor" fill-opacity="0.55">poll · timeout · fallback</text>
+
+  <line x1="360" y1="216" x2="360" y2="250" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="234" y="250" width="252" height="58" rx="10" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.35"/>
+  <circle cx="234" cy="279" r="15" fill="#2563eb"/>
+  <text x="234" y="283" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">3</text>
+  <text x="362" y="284" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Reconcile &amp; validate</text>
+
+  <line x1="360" y1="308" x2="360" y2="342" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="234" y="342" width="252" height="58" rx="10" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.35"/>
+  <circle cx="234" cy="371" r="15" fill="#2563eb"/>
+  <text x="234" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">4</text>
+  <text x="362" y="376" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Persist records</text>
+
+  <line x1="360" y1="400" x2="360" y2="434" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="234" y="434" width="252" height="58" rx="10" fill="currentColor" fill-opacity="0.03" stroke="currentColor" stroke-opacity="0.35"/>
+  <circle cx="234" cy="463" r="15" fill="#2563eb"/>
+  <text x="234" y="467" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5</text>
+  <text x="362" y="459" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">Create output</text>
+  <text x="362" y="477" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity="0.6">call another service</text>
+  <text x="500" y="468" text-anchor="start" font-size="12" fill="currentColor" fill-opacity="0.55">via MCP</text>
+
+  <line x1="360" y1="492" x2="360" y2="524" stroke="currentColor" stroke-opacity="0.5" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- output -->
+  <rect x="265" y="524" width="190" height="36" rx="18" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.35"/>
+  <text x="360" y="547" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">Structured result</text>
+</svg>
+
+_Each node is a plain Python class with a prompt and a set of tools. The orchestrator runs them in a fixed order, so the flow is reviewable and testable even though the work inside each node is done by a model._
+
 ## 1. Make the flow deterministic, not the model
 
 Optorch models a workflow as a **node graph**. Each node is a small unit of work declared in configuration: which model it uses, which tools it can call, what its prompt is, and where to go next. The orchestrator runs a node, looks at its routing, and moves to the next one. The order of steps lives in config, not in the model's head.
