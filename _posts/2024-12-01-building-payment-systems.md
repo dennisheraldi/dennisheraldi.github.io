@@ -6,8 +6,6 @@ date: 2024-12-01
 tags: [backend, payments, architecture]
 ---
 
-# Lessons from Building Payment Systems at Scale
-
 Building payment systems is one of the most challenging yet rewarding experiences in software engineering. Over the past year at Paper.id, I had the opportunity to architect and maintain payment engines handling **4 billion IDR monthly** across multiple payment methods.
 
 Here are some key lessons I learned along the way.

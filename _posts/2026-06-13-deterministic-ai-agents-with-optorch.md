@@ -6,8 +6,6 @@ date: 2026-06-13
 tags: [ai, llm, agents, architecture, engineering]
 ---
 
-# Building a Deterministic AI Agent with Optorch
-
 Most of the "AI agent" demos you see online are free-form: you give a model some tools and a goal, and you hope it figures out the right sequence of steps. That is great for a demo and terrifying for production. When the same input can produce a different path every run, you cannot debug it, you cannot test it, and you certainly cannot put it in front of a customer.
 
 I recently built an agent that takes a long, messy document and turns it into a set of structured business records, with a few external systems involved along the way. The interesting part was not the model. It was making the AI behave like a normal, predictable piece of software. The tool that made that possible was [Optorch](https://github.com/optorchai/optorch), an open-source AI orchestration framework authored by Chris Churchill.

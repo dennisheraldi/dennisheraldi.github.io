@@ -6,8 +6,6 @@ date: 2024-12-06
 tags: [personal, introduction]
 ---
 
-# Hello World!
-
 Welcome to my blog! I'm Dennis, a Software Engineer based in Jakarta, Indonesia. After years of building backend systems and integrating complex microservices, I've decided to start documenting my learnings (or maybe just random thoughts) and share them with the community.
 
 ## Why I'm Writing

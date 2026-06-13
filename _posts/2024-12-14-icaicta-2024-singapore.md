@@ -6,8 +6,6 @@ date: 2024-12-14
 tags: [travel, research, conference, personal]
 ---
 
-# My First Overseas Trip: ICAICTA 2024 in Singapore
-
 September 2024 marked a significant milestone in my life, my first trip abroad. The destination? Singapore. The occasion? Presenting my research paper at the 11th International Conference on Advanced Informatics: Concepts, Theory and Applications (ICAICTA 2024).
 
 ## The Conference
