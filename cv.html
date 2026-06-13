@@ -11,16 +11,16 @@ description: View and download my resume/CV
       class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6"
     >
       <div>
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+        <h1 class="glitch text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2" data-text="Resume / CV">
           Resume / CV
         </h1>
-        <p class="text-muted">Last updated: {{ site.data.profile.last_updated }}</p>
+        <p class="text-muted font-mono uppercase tracking-wide text-sm">Last updated: {{ site.data.profile.last_updated }}</p>
       </div>
       <a
         id="download-link"
         href="{{ '/resume/resume-swe.pdf' | relative_url }}"
         download="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
+        class="glow-hover inline-flex items-center gap-2 px-6 py-3 bg-primary text-dark font-semibold uppercase tracking-wide rounded-lg hover:bg-primary-dark transition-colors"
       >
         <svg
           class="w-5 h-5"
@@ -49,7 +49,7 @@ description: View and download my resume/CV
         data-variant="swe"
         data-pdf="{{ '/resume/resume-swe.pdf' | relative_url }}"
         data-filename="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="px-4 py-2 text-sm font-medium rounded-md transition-colors bg-primary text-white"
+        class="px-4 py-2 text-sm font-medium uppercase tracking-wide rounded-md transition-colors bg-primary text-dark"
       >
         Software Engineering
       </button>
@@ -461,9 +461,9 @@ description: View and download my resume/CV
       t.setAttribute('aria-selected', active ? 'true' : 'false');
       if (active) {
         t.classList.remove('text-muted', 'hover:text-primary');
-        t.classList.add('bg-primary', 'text-white');
+        t.classList.add('bg-primary', 'text-dark');
       } else {
-        t.classList.remove('bg-primary', 'text-white');
+        t.classList.remove('bg-primary', 'text-dark');
         t.classList.add('text-muted', 'hover:text-primary');
       }
     });

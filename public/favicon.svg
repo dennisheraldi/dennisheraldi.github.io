@@ -1,4 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#2563eb"/>
-  <text x="16" y="22" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">D</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.8" result="b" />
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Tech-noir tile -->
+  <rect width="100" height="100" rx="20" fill="#050505" />
+  <rect x="1.5" y="1.5" width="97" height="97" rx="18.5" stroke="#1a2024" stroke-width="1.5" />
+
+  <!-- Geometric chamfered "D" outline (hexagon-edged bowl) -->
+  <path
+    fill="none"
+    stroke="#00E5FF"
+    stroke-width="5"
+    stroke-linejoin="round"
+    filter="url(#glow)"
+    d="M28,24 L50,24 L70,37 L70,55 L50,68 L28,68 Z
+       M42,37 L49,37 L57,43 L57,49 L49,55 L42,55 Z"
+  />
 </svg>

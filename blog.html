@@ -8,7 +8,7 @@ description: Thoughts on software engineering, backend development, and building
   <div class="max-w-5xl mx-auto px-6">
     <!-- Header -->
     <div class="max-w-2xl mb-16">
-      <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Blog</h1>
+      <h1 class="glitch text-4xl md:text-5xl font-bold uppercase tracking-tight mb-4" data-text="Blog">Blog</h1>
       <p class="text-lg text-muted">
         Thoughts on software engineering, backend development, payment systems,
         and lessons learned along the way.
@@ -20,7 +20,7 @@ description: Thoughts on software engineering, backend development, and building
     {% if sorted_posts.size > 0 %}
     <div class="grid gap-6 md:grid-cols-2">
       {% for post in sorted_posts %}
-      <article class="group p-6 rounded-xl border border-light-border dark:border-dark-border bg-light-card dark:bg-dark-card hover:border-primary/50 transition-colors">
+      <article class="glow-hover group p-6 rounded-xl border border-dark-border bg-dark-card hover:border-primary/50 transition-colors">
         <a href="{{ post.url | relative_url }}" class="block">
           <div class="flex items-center gap-2 text-sm text-muted mb-3">
             <time datetime="{{ post.date | date_to_xmlschema }}">
@@ -31,7 +31,7 @@ description: Thoughts on software engineering, backend development, and building
               <span class="text-primary">{{ post.tags | first }}</span>
             {% endif %}
           </div>
-          <h2 class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+          <h2 class="text-xl font-semibold uppercase tracking-tight mb-2 group-hover:text-primary transition-colors">
             {{ post.title }}
           </h2>
           <p class="text-muted line-clamp-2">{{ post.description }}</p>

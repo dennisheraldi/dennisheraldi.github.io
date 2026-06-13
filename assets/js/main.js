@@ -1,15 +1,3 @@
-// Theme toggle functionality
-function setupThemeToggle() {
-  const toggles = document.querySelectorAll("#theme-toggle, #theme-toggle-mobile");
-
-  toggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.toggle("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-  });
-}
-
 // Mobile menu functionality
 function setupMobileMenu() {
   const menuBtn = document.getElementById("mobile-menu-btn");
@@ -31,7 +19,6 @@ function setupMobileMenu() {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  setupThemeToggle();
   setupMobileMenu();
 });
 

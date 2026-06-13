@@ -8,11 +8,24 @@
   }
 
   body {
-    @apply antialiased font-sans;
+    @apply antialiased font-sans bg-dark text-light;
+    /* Establish a stacking context so the fixed canvas/overlay layers
+       (negative z-index) sit behind page content. */
+    position: relative;
+    z-index: 0;
+  }
+
+  /* Display headings: techy, tight, uppercase tracking that echoes the
+     condensed album-cover lettering. */
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
   }
 
   ::selection {
-    @apply bg-primary/20 text-primary;
+    background: rgba(0, 229, 255, 0.25);
+    color: #f0f0f0;
   }
 }
 
@@ -34,6 +47,390 @@
   }
 }
 
+/* ==========================================================================
+   Live ambient background + CRT/grain overlays
+   ========================================================================== */
+
+/* The interactive particle/fluid canvas. Kept extremely faint so body text
+   stays perfectly readable. Sits behind everything. */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.3;
+  pointer-events: none;
+  will-change: transform, opacity;
+  /* Ease the fluid back where the hero copy sits (upper-left) so text stays
+     crisp, while letting it bloom on the right and lower areas. */
+  -webkit-mask-image: radial-gradient(
+    130% 130% at 82% 32%,
+    black 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  mask-image: radial-gradient(
+    130% 130% at 82% 32%,
+    black 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Two stacked, full-screen analog textures: fine static grain (SVG noise)
+   plus horizontal CRT scanlines. Fixed so they don't scroll with content. */
+.fx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Top layer: scanlines. Bottom layer: a soft vignette to deepen the edges. */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      rgba(0, 0, 0, 0.28) 2px,
+      rgba(0, 0, 0, 0.28) 4px
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 62%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+}
+
+/* Static grain via tiled SVG fractal noise. Blended over so it reads as film
+   grain rather than a flat wash. */
+.fx-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   Effect keyframes
+   ========================================================================== */
+
+/* EDM "sidechain" pump: opacity ducks down and swells back twice per bar at
+   ~128 BPM (one beat = 0.46875s; the 0.9375s loop spans two beats). */
+@keyframes sidechain-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  40% {
+    opacity: 0.35;
+  }
+}
+
+/* Slow ambient drift for floating glow blobs / geometric shapes. */
+@keyframes ambient-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+/* Chromatic-aberration "glitch": RGB split via text-shadow plus tiny
+   horizontal tears via clip-path, fired only on hover/focus. */
+@keyframes glitch-shift {
+  0% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+    clip-path: inset(20% 0 60% 0);
+  }
+  40% {
+    transform: translate(2px, -1px);
+    clip-path: inset(60% 0 10% 0);
+  }
+  60% {
+    transform: translate(-1px, 0);
+    clip-path: inset(10% 0 70% 0);
+  }
+  80% {
+    transform: translate(1px, 1px);
+    clip-path: inset(40% 0 40% 0);
+  }
+  100% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Periodic, mostly-calm chromatic tear for the hero title (breakaway /
+   carry-you vibe): the colored copies sit invisible ~90% of the time, then
+   slice and RGB-split for a brief burst. Two copies run offset so red and
+   cyan tear independently. */
+@keyframes glitch-burst-cyan {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 100% 0);
+  }
+  89% {
+    opacity: 0.85;
+    transform: translate(-3px, -1px);
+    clip-path: inset(8% 0 62% 0);
+  }
+  92% {
+    opacity: 0.7;
+    transform: translate(3px, 1px);
+    clip-path: inset(55% 0 18% 0);
+  }
+  95% {
+    opacity: 0.8;
+    transform: translate(-2px, 0);
+    clip-path: inset(30% 0 45% 0);
+  }
+  97% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-burst-red {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 100% 0);
+  }
+  89.5% {
+    opacity: 0.7;
+    transform: translate(3px, 1px);
+    clip-path: inset(20% 0 50% 0);
+  }
+  93% {
+    opacity: 0.65;
+    transform: translate(-3px, -1px);
+    clip-path: inset(48% 0 28% 0);
+  }
+  96% {
+    opacity: 0;
+  }
+}
+
+/* Infinite hexagon tunnel zoom (biochemical): rings scale outward and fade,
+   staggered so a new ring is always emerging from the centre. */
+@keyframes hex-zoom {
+  0% {
+    transform: scale(0.06);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Effect helpers
+   ========================================================================== */
+
+/* Diffused cyan box-shadow for buttons / links / interactive cards. */
+.glow {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.35),
+    0 0 40px rgba(0, 229, 255, 0.12);
+}
+
+.glow-hover {
+  transition: box-shadow 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.3),
+    0 0 36px rgba(0, 229, 255, 0.1);
+}
+
+/* Soft EDM pump applied to glow rings, the hero hex icon, card accents. */
+.pulse {
+  animation: sidechain-pulse 0.9375s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* Slow vertical drift for ambient shapes. */
+.float {
+  animation: ambient-float 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Glitch on hover/focus: the element copies its own text into ::before and
+   ::after pseudo-elements offset in cyan/magenta for chromatic aberration. */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.glitch:hover::before,
+.glitch:focus-visible::before {
+  opacity: 0.9;
+  color: #ff2f6d;
+  animation: glitch-shift 0.4s steps(2, end) 1;
+}
+
+.glitch:hover::after,
+.glitch:focus-visible::after {
+  opacity: 0.9;
+  color: #00e5ff;
+  animation: glitch-shift 0.4s steps(2, end) reverse 1;
+}
+
+/* Hero title: always-on periodic chromatic tear (independent of hover). */
+.glitch-auto {
+  position: relative;
+}
+
+.glitch-auto::before,
+.glitch-auto::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity, clip-path;
+}
+
+.glitch-auto::before {
+  color: #00e5ff;
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.4);
+  animation: glitch-burst-cyan 11s steps(1, end) infinite;
+}
+
+.glitch-auto::after {
+  color: #ff2f6d;
+  animation: glitch-burst-red 11s steps(1, end) infinite;
+}
+
+/* Infinite hexagon tunnel behind the hero. Masked to a soft circle so it
+   reads as a glowing portal rather than a hard graphic. */
+.hex-tunnel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 12%,
+    transparent 68%
+  );
+  mask-image: radial-gradient(ellipse at center, black 12%, transparent 68%);
+}
+
+.hex-tunnel svg {
+  position: absolute;
+  width: min(150vh, 150vw);
+  height: min(150vh, 150vw);
+}
+
+.hex-ring {
+  fill: none;
+  stroke: rgba(0, 229, 255, 0.24);
+  stroke-width: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hex-zoom 24s linear infinite;
+  will-change: transform, opacity;
+}
+
+.hex-ring:nth-child(1) {
+  animation-delay: 0s;
+}
+.hex-ring:nth-child(2) {
+  animation-delay: -4s;
+}
+.hex-ring:nth-child(3) {
+  animation-delay: -8s;
+}
+.hex-ring:nth-child(4) {
+  animation-delay: -12s;
+}
+.hex-ring:nth-child(5) {
+  animation-delay: -16s;
+}
+.hex-ring:nth-child(6) {
+  animation-delay: -20s;
+}
+
+/* Cyan-tinted duotone for imagery to match the "x-ray / fluid" vibe. */
+.duotone {
+  position: relative;
+  filter: grayscale(1) contrast(1.15) brightness(0.9);
+}
+
+.duotone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 229, 255, 0.45),
+    rgba(10, 13, 16, 0.2) 70%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Halftone dot backdrop for section headers, masked so it fades at the edges
+   instead of reading like a hard wallpaper. */
+.halftone {
+  position: relative;
+}
+
+.halftone::before {
+  content: '';
+  position: absolute;
+  inset: -1rem -1.5rem;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(0, 229, 255, 0.12) 1px,
+    transparent 1.5px
+  );
+  background-size: 10px 10px;
+  -webkit-mask-image: radial-gradient(
+    ellipse at left center,
+    black 0%,
+    transparent 70%
+  );
+  mask-image: radial-gradient(
+    ellipse at left center,
+    black 0%,
+    transparent 70%
+  );
+}
+
+/* ==========================================================================
+   Hero ambience (recolored to cyan)
+   ========================================================================== */
+
 /* Hero dotted-grid backdrop. Sits beneath the spotlight so the cursor glow
    reveals the dots more brightly as it passes over them. Edges fade out via
    a radial mask so the pattern doesn't feel like a hard wallpaper. */
@@ -44,7 +441,7 @@
   z-index: 0;
   background-image: radial-gradient(
     circle at 1px 1px,
-    rgba(100, 116, 139, 0.18) 1px,
+    rgba(0, 229, 255, 0.14) 1px,
     transparent 0
   );
   background-size: 24px 24px;
@@ -53,19 +450,7 @@
     black 35%,
     transparent 80%
   );
-  mask-image: radial-gradient(
-    ellipse at center,
-    black 35%,
-    transparent 80%
-  );
-}
-
-.dark .hero-grid {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(148, 163, 184, 0.16) 1px,
-    transparent 0
-  );
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
 }
 
 /* Hero spotlight: a soft blurred gradient blob that lazily follows the cursor.
@@ -89,8 +474,8 @@
   border-radius: 9999px;
   background: radial-gradient(
     circle at center,
-    rgba(37, 99, 235, 0.18),
-    rgba(37, 99, 235, 0) 60%
+    rgba(0, 229, 255, 0.18),
+    rgba(0, 229, 255, 0) 60%
   );
   filter: blur(40px);
   opacity: 0;
@@ -102,17 +487,8 @@
   opacity: 1;
 }
 
-.dark .hero-spotlight::before {
-  background: radial-gradient(
-    circle at center,
-    rgba(96, 165, 250, 0.22),
-    rgba(96, 165, 250, 0) 60%
-  );
-}
-
 /* Skip the effect where it would be distracting or unsupported. */
-@media (hover: none),
-  (prefers-reduced-motion: reduce) {
+@media (hover: none), (prefers-reduced-motion: reduce) {
   .hero-spotlight {
     display: none;
   }
@@ -132,11 +508,39 @@
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   Reduced-motion: kill all ambience and animation.
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  #bg-canvas {
+    display: none;
+  }
+
+  .pulse,
+  .float,
+  .hex-ring {
+    animation: none !important;
+  }
+
+  .hex-ring {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+
+  .glitch:hover::before,
+  .glitch:hover::after,
+  .glitch:focus-visible::before,
+  .glitch:focus-visible::after,
+  .glitch-auto::before,
+  .glitch-auto::after {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
 
@@ -181,22 +585,18 @@
 }
 
 .carousel-track::-webkit-scrollbar-track {
-  background: #e5e5e5;
+  background: #1a2024;
   border-radius: 9999px;
 }
 
-.dark .carousel-track::-webkit-scrollbar-track {
-  background: #262626;
-}
-
 .carousel-track::-webkit-scrollbar-thumb {
-  background: rgba(37, 99, 235, 0.5);
+  background: rgba(0, 229, 255, 0.5);
   border-radius: 9999px;
   transition: background-color 0.2s;
 }
 
 .carousel-track::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
+  background: #00e5ff;
 }
 
 .carousel-item {
@@ -220,7 +620,7 @@
   margin-top: 0.5rem;
   font-size: 0.875rem;
   text-align: center;
-  color: #737373;
+  color: #6b7785;
 }
 
 @media (min-width: 640px) {
