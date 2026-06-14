@@ -325,6 +325,20 @@
   animation: glitch-burst-red 11s steps(1, end) infinite;
 }
 
+/* Nickname hint: hovering the full hero name lights up just "Dennis".
+   Sits above the chromatic glitch copies so the highlight stays legible. */
+.hero-nick {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.glitch-auto:hover .hero-nick,
+.glitch-auto:focus-visible .hero-nick {
+  color: #00e5ff;
+  text-shadow: 0 0 22px rgba(0, 229, 255, 0.65);
+}
+
 /* Infinite hexagon tunnel behind the hero. Masked to a soft circle so it
    reads as a glowing portal rather than a hard graphic. */
 .hex-tunnel {
