@@ -168,6 +168,18 @@ Two smaller decisions saved a lot of pain:
 - **Point every model client at an OpenAI-compatible proxy.** The underlying provider can change without touching code, because the service only knows about a base URL, a key, and a model name. Swapping models becomes a config change.
 - **Make the service build like the rest of the stack.** It was mainly Python, but I wrapped it so it builds and produces a container image the same way our other services do. The lesson: do not invent a snowflake pipeline for your AI service. The moment it builds and deploys like everything else, it stops being a special case and starts being maintainable.
 
+## 8. Tame the randomness at the model layer, too
+
+Everything above makes the *pipeline* deterministic. The *model* inside each node is still stochastic: the same prompt can produce a different answer because an LLM samples the next token from a probability distribution. George Karapetyan's [guide to taming randomness in LLM agents](https://medium.com/@georgekar91/making-ai-agent-responses-more-repeatable-a-guide-to-taming-randomness-in-llm-agents-fc83d3f247be) is a good tour of the knobs; here is how they landed on this project.
+
+- **Turn the temperature to zero on any step whose output you parse.** The node that emits the structured JSON runs at `temperature=0`, so it does a greedy decode and takes the most likely token every time. It is the cheapest consistency win there is. One caveat worth knowing: even at zero you are not promised bit-for-bit identical output, because floating-point quirks and model-version changes still leak a little randomness in.
+- **Constrain the output until there is little left to vary.** A strict JSON schema, exact enumerated values, and "set only the fields you were asked to" turn an open-ended generation into something closer to filling in a form. Less room to improvise means less variance. The article calls this reducing the model's degrees of freedom, and that matched my experience exactly.
+- **If it has to be right every time, take it away from the model.** This was my biggest lesson, and it is the one not in the article. A single value needed to be exact, and the model kept getting it subtly wrong, partly because it could not even *see* the field it was meant to set. The fix was not a cleverer prompt; it was moving that decision into deterministic code that derives the value from structured input. Prompt the fuzzy stuff; encode the stuff that must be correct.
+- **Cache and dedupe identical work.** The final tool collapses concurrent identical calls into one, so the same input cannot fan out into two divergent runs. When you cannot make a call perfectly reproducible, the next best thing is to make it only once.
+- **Make drift observable.** Each run emits a trace of what the agent did and which APIs it called. Determinism you cannot see is determinism you cannot trust: when a model, or a model *version*, starts behaving differently, you want to catch it in a diff rather than from a customer.
+
+What I would still add: a fixed `seed` on the providers that support it, and a small golden-set regression (same document in, assert the same shape out) so a model upgrade that quietly changes behavior shows up in CI instead of in production.
+
 ## Closing thoughts
 
 The thing I will carry forward is this: the hard part of production AI is not the model, it is the engineering around it. Determinism, isolation, contracts, graceful failure, and boring CI are what turn an impressive demo into something you can hand to a colleague and walk away from.
