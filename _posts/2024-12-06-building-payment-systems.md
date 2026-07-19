@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Lessons from Building Payment Systems at Scale"
-description: "Key learnings from architecting payment engines that process billions in transactions, including handling idempotency, reconciliation, and multi-provider integrations."
-date: 2024-12-01
+title: 'Lessons from Building Payment Systems at Scale'
+description: 'Lessons from building a payment engine that processed around IDR 4 billion a month: idempotency, reconciliation, and multi-provider integrations.'
+date: 2024-12-06
 tags: [backend, payments, architecture]
 ---
 
-Building payment systems is one of the most challenging yet rewarding experiences in software engineering. Over the past year at Paper.id, I had the opportunity to architect and maintain payment engines handling **4 billion IDR monthly** across multiple payment methods.
+Building payment systems is one of the most challenging yet rewarding parts of software engineering. Over the past year at Paper.id, I built and maintained a payment engine handling around **IDR 4 billion monthly** across multiple payment methods.
 
 Here are some key lessons I learned along the way.
 
@@ -28,10 +28,10 @@ func ProcessPayment(req PaymentRequest) (*PaymentResponse, error) {
     if err == nil && existing != nil {
         return existing, nil // Return cached response
     }
-    
+
     // Process the payment...
     result := processNewPayment(req)
-    
+
     // Cache the result
     cache.Set(req.IdempotencyKey, result, 24*time.Hour)
     return result, nil
@@ -65,7 +65,7 @@ We implemented **RabbitMQ scheduling** for automated transaction reconciliation,
 When integrating multiple payment providers, you'll quickly realize each has its quirks:
 
 - Different API formats
-- Different webhook structures  
+- Different webhook structures
 - Different error codes
 - Different settlement timelines
 
@@ -94,15 +94,10 @@ You can't fix what you can't see. We invested heavily in observability:
 These patterns helped us achieve:
 
 - **99% transaction success rate** across all payment methods
-- Support for QRIS, direct transfers, virtual accounts, and cross-border remittances
-- Compliance with **Indonesia's Central Bank standards**
-- **20% improvement in query performance** through dynamic table partitioning
+- Support for QRIS, bank transfers, virtual accounts, and cross-border remittances
+- Adherence to **Bank Indonesia's QRIS scheme requirements**
+- **20% improvement in query performance** through table partitioning
 
 ## Conclusion
 
-Building payment systems requires thinking about edge cases that rarely occur but have catastrophic consequences when they do. The investment in proper architecture pays off when you can confidently handle millions in transactions without breaking a sweat.
-
----
-
-*What challenges have you faced building financial systems? I'd love to hear your experiences. Reach out on [LinkedIn](https://linkedin.com/in/dennisheraldi)!*
-
+Building payment systems requires thinking about edge cases that rarely occur but have serious consequences when they do. The investment in proper design pays off the first time a provider goes down or a request arrives twice and the system handles it without drama.

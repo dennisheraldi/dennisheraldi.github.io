@@ -1,22 +1,20 @@
-# Work experience: single source of truth for website + both PDF resumes.
+# Detailed work experience used by both PDF resumes.
+# The shorter homepage copy lives in website_experience.yml.
 #
 # Highlight bullets accept simple Markdown:
 #   **text**  -> bold (rendered on web and both PDFs)
 #   *text*    -> italic
 # Stick to those two; keep bullets one paragraph each (no line breaks).
 #
-# `period`      -> short label used on the homepage timeline
 # `period_full` -> long label used on the PDF
 #
 # Per-audience bullets (optional):
-#   highlights            -> always shown (web + both PDFs)
+#   highlights            -> always shown in both PDFs
 #   highlights_swe        -> appended on the SWE resume only
 #   highlights_academic   -> appended on the academic CV only
-# The website always renders `highlights` (not the audience-specific ones)
-# unless we add support there later.
 #
 # Per-entry audience filter (optional):
-#   audience: both        -> default; entry shows on both PDFs (and homepage)
+#   audience: both        -> default; entry shows on both PDFs
 #   audience: swe         -> only on the SWE resume
 #   audience: academic    -> only on the academic CV
 
@@ -29,14 +27,14 @@
   location_short: Jakarta
   period: Apr 2026 - Present
   period_full: April 2026 - Present
-  description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
+  description: Enterprise order-management software for telecom and financial services.
   current: true
   highlights:
-    - "**As an early adopter of AI tooling at the company**, built an **AI Email Interpreter** in Java with **LangChain** on a self-hosted **Ollama qwen3-8b** model that converts multilingual client emails (**validated in English and Mandarin**) into structured order-status payloads, using **example prompts** and falling back to **manual review** when confidence is low; **delivered in 2 days for a client hackathon** and selected by pre-sales to **demonstrate order-to-inbox capability at MWC Barcelona 2026**."
-    - "Built an **end-to-end AI agent that turns unstructured RFP documents into fully-configured Quote & Order records**, on top of an **open-source agent-orchestration framework** (deterministic **node-graph workflow**, **tool-calling**, and **MCP integration** with a bundled Java service); it reads each document with a **vision LLM**, qualifies every site against multiple providers, and assembles a multi-product quote with per-site configuration, **compressing hours of manual catalog lookup, site qualification, and quote building into a few-minute run**. Demonstrated live on the **Catalyst** showcase environment."
-    - "**Won 2nd place at the internal AI competition** with an **AI-Assisted API Transformation engine** that converts natural-language instructions into transformation scripts, **automating an API mapping step that previously required manual scripting** during customer onboarding."
-    - "Built an **AI Analytics PoC** that exposes the production database through a **chat interface backed by MCP**, **giving business users self-service access to operational data** without writing SQL."
-    - "**Lead developer for Banking & Financial Solutions (BFS)**: prepared **10+ international demos at banking events including Sibos**, owned demo environment microservices, and served as **first-line on-call**; also built supporting AI tools (a **PDF reader for financial statements** and an **MCP server that coordinates API calls**) that **cut demo preparation time** for later events."
+    - "Built a **Java service that converts English and Mandarin emails into structured order-status data**, routing uncertain output to manual review. Delivered it in **2 days** and it was selected for a **Mobile World Congress Barcelona 2026 demo**."
+    - "Built a **document-to-quote workflow** that extracts RFP requirements, qualifies sites across providers, and creates configured customer quotes and orders, reducing a process that took **hours to a few minutes**."
+    - "Built a tool that converts natural-language mapping rules into executable transformation scripts, automating a manual customer-onboarding step and earning **second place in CSG's internal AI competition**."
+  highlights_swe:
+    - "Supported **10+ international banking demos as the primary engineer**, owning the supporting microservices and providing first-line technical support. Built reusable document and API tools for later events."
 
 - company: CSG International
   role: Software Developer Engineer I
@@ -44,13 +42,13 @@
   location_short: Jakarta
   period: Jan 2025 - Apr 2026
   period_full: January 2025 - April 2026
-  description: CSG is a global provider of customer experience, billing, and payment solutions for the telecom industry.
+  description: Enterprise order-management software for telecom and financial services.
   current: false
   highlights:
-    - "**Engineered an engine for intent-driven network API transformations** as the MVP of a Catalyst project, **contributing to the company winning the TMForum DTW 2025 award** with Ericsson."
-    - "**Reached zero transaction failures** by adding end-to-end recovery with **idempotency, process-engine auto-retry, and stronger internal error handling**, keeping critical business operations reliable."
+    - "Built an MVP that converted network service requests into API transformation scripts, contributing to a joint project that won the **TM Forum DTW 2025 award**."
   highlights_swe:
-    - "**Modernized 50 customized XML product specifications** and Java microservices, refining core business processes to make it easier for clients to configure the product."
+    - "Made order retries safe after partial failures by **reusing existing plans**, adding **idempotent downstream calls**, and separating automatic retries from manual recovery."
+    - "Migrated **50 customer-specific XML product definitions** and updated the corresponding Java services for a new configuration model."
 
 # ---------- Paper.id --------------------------------------------------------
 
@@ -60,13 +58,13 @@
   location_short: Jakarta
   period: Nov 2023 - Dec 2024
   period_full: November 2023 - December 2024
-  description: Paper.id is a platform providing invoicing, payment, and financing solutions for businesses.
+  description: Business invoicing, payment, and financing platform.
   current: false
   highlights:
-    - "**Cut message template creation from hours to under a minute** by integrating third-party SMS and WhatsApp broadcast services with **concurrent Goroutines processing**."
-    - "**Built a unified payment engine** with a generalized design that handles **different bank behaviors and merchant-specific requirements**, making it easier to integrate with multiple parties while **keeping the system consistent across financial partnerships**."
-    - "**Reached a 99% transaction success rate** by implementing QRIS, direct transfer, virtual account, and cross-border remittance flows that follow **Indonesia's Central Bank standards**, contributing **4 billion IDR TPV** in a month."
-    - "**Hardened the system** by adding **dynamic table partitioning and automated transaction reconciliation** through RabbitMQ scheduling and async callbacks, **improving query performance by 20%** and making reconciliation reports run instantly."
+    - "Built a shared Go payment engine for **QRIS, bank transfers, virtual accounts, and cross-border remittance**, reaching a **99% success rate** and **IDR 4 billion in monthly payment volume**."
+  highlights_swe:
+    - "Cut SMS and WhatsApp template creation from **hours to under a minute** by processing third-party broadcast requests concurrently in Go."
+    - "Reduced payment query time by **20%** with table partitioning and automated reconciliation through RabbitMQ and asynchronous callbacks."
 
 # ---------- Suitmedia -------------------------------------------------------
 
@@ -78,9 +76,9 @@
   period_full: May 2023 - September 2023
   current: false
   highlights:
-    - "Built a **Laravel-based CMS** with **35 dynamic menus and 50 API endpoints** from Figma prototypes, with database schemas designed for **smooth integration with the front-end**."
+    - "Built a **Laravel CMS with 35 configurable menus and 50 API endpoints** from Figma designs."
   highlights_swe:
-    - "**Redesigned database structures** and implemented **dynamic content management with static page integration**, **improving query performance by 30%** and enhancing the user experience across both dynamic and static pages."
+    - "Redesigned database tables and content APIs, reducing query time by **30%**."
 
 # ---------- Synpulse --------------------------------------------------------
 
@@ -93,5 +91,5 @@
   current: false
   audience: swe
   highlights:
-    - "**Authored 20 functional requirement specifications** and mapped API specifications for a **core banking system migration**, creating system flowcharts that kept the **Banking Client's Avaloq transition project on schedule**."
-    - "**Removed manual daily data processing** by writing automated **Excel-to-Oracle shell scripts**, cutting reconciliation report processing **from 15 minutes to near-instant**."
+    - "Wrote **20 functional requirements** and mapped APIs for a core-banking migration, helping keep the project on schedule."
+    - "Automated daily Excel-to-Oracle reconciliation with shell scripts, eliminating **15 minutes of manual processing each day**."

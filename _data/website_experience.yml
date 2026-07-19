@@ -1,0 +1,41 @@
+# Short homepage summaries. The detailed CV uses experience.yml separately.
+
+- company: CSG International
+  url: https://www.csgi.com/products/quote-and-order
+  role: Software Developer Engineer II
+  period: Jan 2025 - Present
+  location: Jakarta, Indonesia
+  current: true
+  summary: >-
+    Build backend services and internal tools for telecom ordering and banking
+    demos. Promoted from Engineer I in April 2026.
+
+- company: Paper.id
+  url: https://www.paper.id/
+  role: Software Engineer
+  period: Nov 2023 - Dec 2024
+  location: Jakarta, Indonesia
+  current: false
+  summary: >-
+    Worked on backend systems for business payments, financing, and customer
+    messaging.
+
+- company: Suitmedia
+  url: https://suitmedia.com/
+  role: Software Engineer Intern
+  period: May 2023 - Sep 2023
+  location: Bandung, Indonesia
+  current: false
+  summary: >-
+    Built a Laravel CMS and 50 APIs from Figma designs for a content-heavy web
+    platform.
+
+- company: Synpulse
+  url: https://www.synpulse.com/en
+  role: Software Engineer Intern
+  period: Oct 2022 - Dec 2022
+  location: Jakarta, Indonesia
+  current: false
+  summary: >-
+    Mapped requirements for a core-banking migration and automated daily
+    Excel-to-Oracle reconciliation work.

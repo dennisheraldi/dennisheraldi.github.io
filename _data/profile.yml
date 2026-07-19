@@ -4,21 +4,28 @@
 name: Fachry Dennis Heraldi
 title: Software Engineer
 
-# `summary` is the default. It powers the homepage hero and the SWE PDF resume.
-summary: >-
-  Software engineer with experience integrating different microservices into
-  one connected solution. Quick to adapt to new technology, focused on
-  building reliable systems that can recover from failures, and committed to
-  clear documentation and knowledge sharing.
+# Homepage positioning stays separate from the resume summary.
+website_tagline: I build backend systems and practical AI tools.
+website_summary: >-
+  I enjoy taking unclear technical problems from investigation to a working
+  solution: learning unfamiliar systems, testing ideas, debugging failures,
+  and making the result reliable. My background is in backend engineering, and
+  lately I have been applying new AI tools where they can reduce real manual
+  work.
 
-# `summary_academic` is used only by the academic CV PDF (resume-academic.pdf)
+# `summary` powers the SWE PDF resume.
+summary: >-
+  Backend-focused software engineer building reliable workflows, payment
+  integrations, and practical AI tools. Experience spans implementation,
+  debugging, testing, and operational support.
+
+# `summary_academic` is used only by the academic CV PDF (from resume-academic.typ)
 # and is angled toward AI/ML graduate program applications. Edit freely.
 summary_academic: >-
-  Software engineer with a research interest in applied LLMs and natural
-  language processing. Winner of the ICAICTA 2024 Best Paper Award for
-  fine-tuning Llama 2 on sarcasm detection. Currently building LLM-based
-  systems at CSG with prompt engineering, confidence-based decisions, and
-  manual review for safety. Looking to pursue graduate study in AI/ML.
+  Software engineer interested in reliable AI systems and natural language
+  processing. Co-authored an ICAICTA 2024 Best Paper on sarcasm detection and
+  now builds document-processing workflows that combine LLMs with rule-based
+  validation and manual review.
 
 location: Jakarta, Indonesia
 phone: "+62 882 1185 4646"
@@ -35,4 +42,4 @@ links:
     url: https://github.com/dennisheraldi
 
 # Used by cv.html. Format: "Month YYYY". Keep human-readable.
-last_updated: May 2026
+last_updated: July 2026

@@ -86,7 +86,7 @@
   set document(title: title, author: author)
   set page(paper: "a4", margin: (x: margin, y: margin))
   set text(font: "Arial", size: size, hyphenate: false)
-  set par(justify: true, leading: leading, spacing: spacing)
+  set par(justify: false, leading: leading, spacing: spacing)
   body
 }
 

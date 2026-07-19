@@ -6,8 +6,8 @@
 # - resume-academic.typ   : Academic CV source
 #
 # Generated (built by GitHub Actions on every push to main):
-# - resume-swe.pdf        : Software-engineering resume PDF
-# - resume-academic.pdf   : Academic CV PDF
-# - resume.pdf            : Alias of resume-swe.pdf (kept for backwards-compat)
+# - swe/CV - Fachry Dennis Heraldi.pdf       : Software-engineering resume PDF
+# - academic/CV - Fachry Dennis Heraldi.pdf  : Academic CV PDF
+# - resume.pdf                               : Alias of the SWE PDF (kept for backwards-compat)
 #
 # All resume content lives in ../_data/*.yml. Edit there, not here.

@@ -1,57 +1,38 @@
-# Technical skills: single source of truth for website + PDF resume.
-#
-# `title` is what users see (PDF + homepage card heading).
-# `icon` is only used on the homepage (one of: code, layers, database, tool, cloud).
+# Technical skills used by both PDF resumes.
 
 - title: Programming Languages
-  icon: code
   skills:
     - Java
-    - Golang
-    - PHP
+    - Go
     - Python
+    - PHP
     - JavaScript
-    - Shell Scripting
+    - Shell
 
-- title: Frameworks & Libraries
-  icon: layers
+- title: Backend & Data
   skills:
-    - Laravel
-    - React
-    - ViteJS
-    - NodeJS
+    - Node.js
     - Fastify
+    - Laravel
     - JAX-WS
-
-- title: Databases
-  icon: database
-  skills:
     - PostgreSQL
     - MySQL
-    - ArangoDB
-    - Oracle Database
+    - Oracle
 
-- title: Tools & Infrastructure
-  icon: tool
+- title: Infrastructure & Messaging
   skills:
+    - Docker
+    - Jenkins
+    - AWS
+    - Google Cloud
     - RabbitMQ
     - Kafka
     - OpenTelemetry
-    - Vault
-    - Consul
-    - Docker
-    - Jenkins
-    - Google Cloud Platform
-    - AWS
 
-- title: AI / ML
-  icon: sparkles
+- title: AI Engineering
   skills:
     - LangChain
     - Ollama
-    - OpenRouter
-    - Llama 2
-    - Qwen
-    - Model Context Protocol (MCP)
-    - Prompt Engineering
+    - MCP
+    - PEFT / QLoRA
     - LLM Evaluation

@@ -45,10 +45,11 @@ jobs:
       - name: Compile Resumes (Typst to PDF)
         run: |
           # --root . lets the templates read content from ../_data/*.yml
-          typst compile --root . resume/resume-swe.typ resume/resume-swe.pdf
-          typst compile --root . resume/resume-academic.typ resume/resume-academic.pdf
+          mkdir -p resume/swe resume/academic
+          typst compile --root . resume/resume-swe.typ "resume/swe/CV - Fachry Dennis Heraldi.pdf"
+          typst compile --root . resume/resume-academic.typ "resume/academic/CV - Fachry Dennis Heraldi.pdf"
           # Backwards-compat alias. Preserves the old /resume/resume.pdf URL.
-          cp resume/resume-swe.pdf resume/resume.pdf
+          cp "resume/swe/CV - Fachry Dennis Heraldi.pdf" resume/resume.pdf
           echo "Resumes compiled successfully"
 
       - name: Setup Pages

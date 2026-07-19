@@ -25,37 +25,41 @@ This site auto-deploys to GitHub Pages via GitHub Actions. Just push to the `mai
 
 Two resume variants are generated from a single YAML source of truth:
 
-- **Software Engineering resume**: `resume/resume-swe.pdf` (also published at `resume/resume.pdf` for backwards compatibility).
-- **Academic CV**: `resume/resume-academic.pdf`. Targeted at AI/ML graduate program applications; leads with Education and Publications & Awards.
+- **Software Engineering resume**: `resume/swe/CV - Fachry Dennis Heraldi.pdf` (also published at `resume/resume.pdf` for backwards compatibility).
+- **Academic CV**: `resume/academic/CV - Fachry Dennis Heraldi.pdf`. Targeted at AI/ML graduate program applications; leads with Education and Publications & Awards.
 
 ### How it works
 
-All content lives in `_data/*.yml`. The Typst templates only render; they don't store content. Edit the YAML, push, and GitHub Actions rebuilds **both** PDFs and the website.
+Resume content lives in `_data/*.yml`. The Typst templates only render; they don't store content. The homepage keeps shorter experience copy in a separate file so it does not duplicate the CV.
 
 ### Files
 
 ```
 _data/
-├── profile.yml       # Name, summary (+ summary_academic), contact, links
-├── experience.yml    # Work experience (shared by both resumes + homepage)
+├── profile.yml       # Website positioning, resume summaries, contact, links
+├── experience.yml    # Detailed work experience for both resumes
+├── website_experience.yml # Short experience summaries for the homepage
+├── selected_projects.yml  # Projects grouped under homepage experience
 ├── education.yml     # Education
-├── skills.yml        # Technical skills (rendered as cards on homepage)
+├── skills.yml        # Technical skills for both resumes
 └── awards.yml        # Publications & Awards (academic CV only)
 
 resume/
 ├── _template.typ            # Shared layout primitives + markdown helper
 ├── resume-swe.typ           # SWE resume renderer
 ├── resume-academic.typ      # Academic CV renderer
-├── resume-swe.pdf           # Generated (auto-built)
-├── resume-academic.pdf      # Generated (auto-built)
-└── resume.pdf               # Backwards-compat alias of resume-swe.pdf
+├── swe/
+│   └── CV - Fachry Dennis Heraldi.pdf       # Generated SWE PDF (auto-built)
+├── academic/
+│   └── CV - Fachry Dennis Heraldi.pdf       # Generated academic CV (auto-built)
+└── resume.pdf               # Backwards-compat alias of the SWE PDF
 ```
 
 ### Bullet formatting
 
-Highlight strings in the YAML accept basic Markdown:
+Resume highlight strings in `experience.yml` accept basic Markdown:
 
-- `**text**` for **bold**. Renders on the website (via `markdownify`) and in both PDFs.
+- `**text**` for **bold**.
 - `*text*` for *italic*.
 
 ### Per-audience bullets
@@ -76,7 +80,7 @@ highlights_academic:  # appended on the academic CV only
 1. Edit the relevant `_data/*.yml` file.
 2. Push to `main`.
 3. GitHub Actions compiles both PDFs and rebuilds the site.
-4. Both `/resume/resume-swe.pdf` and `/resume/resume-academic.pdf` are updated, and the `/cv` page (which has SWE/Academic tabs) reflects the change.
+4. Both `/resume/swe/CV - Fachry Dennis Heraldi.pdf` and `/resume/academic/CV - Fachry Dennis Heraldi.pdf` are updated, and the `/cv` page (which has SWE/Academic tabs) reflects the change.
 
 ## Local Development
 
@@ -124,8 +128,9 @@ bundle exec jekyll serve --livereload
 brew install typst
 
 # Compile both resumes (--root . lets the templates read ../_data/*.yml)
-typst compile --root . resume/resume-swe.typ resume/resume-swe.pdf
-typst compile --root . resume/resume-academic.typ resume/resume-academic.pdf
+mkdir -p resume/swe resume/academic
+typst compile --root . resume/resume-swe.typ "resume/swe/CV - Fachry Dennis Heraldi.pdf"
+typst compile --root . resume/resume-academic.typ "resume/academic/CV - Fachry Dennis Heraldi.pdf"
 ```
 
 ## Adding Blog Posts
@@ -160,9 +165,9 @@ Your content here...
 │   ├── _template.typ          # Shared Typst primitives
 │   ├── resume-swe.typ         # SWE resume source
 │   ├── resume-academic.typ    # Academic CV source
-│   ├── resume-swe.pdf         # Generated SWE PDF
-│   ├── resume-academic.pdf    # Generated academic CV PDF
-│   └── resume.pdf             # Alias of resume-swe.pdf (backwards-compat)
+│   ├── swe/                   # Generated SWE PDF (CV - Fachry Dennis Heraldi.pdf)
+│   ├── academic/              # Generated academic CV (CV - Fachry Dennis Heraldi.pdf)
+│   └── resume.pdf             # Alias of the SWE PDF (backwards-compat)
 ├── index.html           # Homepage
 ├── blog.html            # Blog index
 ├── cv.html              # CV/Resume page

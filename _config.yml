@@ -1,7 +1,7 @@
 # Site settings
 title: Dennis Heraldi
-tagline: Software Engineer
-description: Software engineer experienced in integrating diverse microservices into unified solutions. Adaptive to new tech, focused on building reliable, failure-tolerant systems.
+tagline: Backend Systems and Applied AI
+description: Software engineer focused on backend systems and applied AI, turning unfamiliar technical problems into practical, reliable software.
 author: Fachry Dennis Heraldi
 email: fd.heraldi@gmail.com
 url: "https://dennisheraldi.github.io"
@@ -57,8 +57,8 @@ exclude:
 # Include generated files
 include:
   - resume/resume.pdf
-  - resume/resume-swe.pdf
-  - resume/resume-academic.pdf
+  - resume/swe
+  - resume/academic
 
 # Collections
 collections:

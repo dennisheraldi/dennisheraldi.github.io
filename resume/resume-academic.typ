@@ -1,7 +1,7 @@
 // Academic CV for Fachry Dennis Heraldi.
 // Targeted at AI/ML graduate program applications.
 // Renderer only; all content lives in ../_data/*.yml.
-// Compile from the repo root:  typst compile --root . resume/resume-academic.typ resume/resume-academic.pdf
+// Compile from the repo root:  typst compile --root . resume/resume-academic.typ "resume/academic/CV - Fachry Dennis Heraldi.pdf"
 
 #import "_template.typ": *
 
@@ -15,10 +15,10 @@
 #show: apply-page-setup.with(
   title: profile.name + " Academic CV",
   author: profile.name,
-  margin: 0.3in,
-  leading: 0.3em,
-  spacing: 0.45em,
-  size: 9.5pt,
+  margin: 0.5in,
+  leading: 0.35em,
+  spacing: 0.5em,
+  size: 10.5pt,
 )
 
 // Header uses the academic-flavored summary.

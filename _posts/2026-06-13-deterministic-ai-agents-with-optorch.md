@@ -185,7 +185,3 @@ What I would still add: a fixed `seed` on the providers that support it, and a s
 The thing I will carry forward is this: the hard part of production AI is not the model, it is the engineering around it. Determinism, isolation, contracts, graceful failure, and boring CI are what turn an impressive demo into something you can hand to a colleague and walk away from.
 
 If you want to explore the framework, [Optorch is open source](https://github.com/optorchai/optorch). It is a clean way to think about AI workflows as plain Python nodes and tools rather than magic.
-
----
-
-*Have you taken an AI prototype to production? I would love to compare notes. Reach out on [LinkedIn](https://linkedin.com/in/dennisheraldi)!*

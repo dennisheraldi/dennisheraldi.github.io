@@ -36,8 +36,12 @@ module.exports = {
         'muted-light': '#8a97a5',
       },
       fontFamily: {
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        // Condensed display = album background type; serif = title accents.
+        // Avoid font names with digits (e.g. Source Sans 3): Tailwind's escape
+        // can invalidate font-family and body falls back to Times.
+        display: ['Bebas Neue', 'Impact', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       boxShadow: {

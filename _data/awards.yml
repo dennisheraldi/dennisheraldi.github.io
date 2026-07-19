@@ -1,5 +1,5 @@
-# Publications & Awards. Used by the academic CV (resume-academic.pdf) and the
-# SWE resume (resume-swe.pdf), filtered by audience.
+# Publications & Awards. Used by the academic CV (resume-academic.typ) and the
+# SWE resume (resume-swe.typ), filtered by audience.
 #
 # Schema:
 #   title:      paper/project/award title
@@ -11,20 +11,20 @@
 #               picks up the entry.
 #   highlights: bullets describing contribution and impact
 
-- title: Sarcasm Detection Using Fine-tuned Llama 2     # TODO: replace with the exact paper title
+- title: Effective Intended Sarcasm Detection Using Fine-Tuned Llama 2 Large Language Models
   venue: International Conference on Advanced Informatics (ICAICTA 2024)
   location: Singapore
   date: September 2024
-  authors: null                                          # TODO: add author list, e.g. "F. D. Heraldi, et al."
+  authors: Fachry Dennis Heraldi and Fariska Zakhralativa Ruskanda
   audience: both
   highlights:
-    - "**Best Paper Award.** Fine-tuned **Llama 2** for sarcasm detection on a dataset of **21,000+ samples**, **beating previous benchmarks by 8%** through prompt engineering and parameter-efficient fine-tuning trade-offs that help the model understand nuanced language better."
+    - "**Best Paper Award.** Fine-tuned Llama 2 with QLoRA on **21,599 samples**, achieving **0.6867 F1** for sarcasm detection and **0.90 accuracy** for pairwise sarcasm identification."
 
-- title: RubBot, AI-Powered Waste Recognition
+- title: RubBot Waste Recognition System
   venue: Green Our Campus Paper Competition
   location: Institut Teknologi Bandung
   date: November 2023
   authors: null
   audience: academic
   highlights:
-    - "**First Place Winner.** Built an AI-based waste recognition system using a **Vision Transformer** integrated with IoT, **improving waste processing efficiency by 90%** to support campus sustainability."
+    - "**First Place Winner.** Prototyped a Vision Transformer-based waste classifier connected to an IoT sorting system."

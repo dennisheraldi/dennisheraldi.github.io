@@ -1,0 +1,33 @@
+- company: CSG International
+  title: RFP to Quote Agent
+  url: /blog/deterministic-ai-agents-with-optorch/
+  description: >-
+    Turns unstructured RFP documents into configured telecom quotes, reducing
+    hours of manual catalog lookup and site qualification to a few minutes.
+  technologies:
+    - Python
+    - Java
+    - MCP
+    - Vision LLM
+
+- company: CSG International
+  title: Reliable Order Recovery
+  url: /blog/making-retries-safe-in-multi-step-workflows/
+  description: >-
+    Added idempotency, automatic retries, and safer error handling to critical
+    order flows, bringing transaction failures down to zero.
+  technologies:
+    - Java
+    - Process Engine
+    - Microservices
+
+- company: Paper.id
+  title: Unified Payment Engine
+  url: /blog/building-payment-systems/
+  description: >-
+    Built shared payment flows for QRIS, bank transfers, virtual accounts, and
+    remittance, reaching a 99% success rate and IDR 4 billion monthly volume.
+  technologies:
+    - Go
+    - PostgreSQL
+    - RabbitMQ

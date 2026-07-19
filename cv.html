@@ -11,16 +11,21 @@ description: View and download my resume/CV
       class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6"
     >
       <div>
-        <h1 class="glitch text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2" data-text="Resume / CV">
+        <h1
+          class="glitch font-serif text-3xl md:text-5xl font-normal mb-2"
+          data-text="Resume / CV"
+        >
           Resume / CV
         </h1>
-        <p class="text-muted font-mono uppercase tracking-wide text-sm">Last updated: {{ site.data.profile.last_updated }}</p>
+        <p class="text-muted text-sm">
+          Last updated: {{ site.data.profile.last_updated }}
+        </p>
       </div>
       <a
         id="download-link"
-        href="{{ '/resume/resume-swe.pdf' | relative_url }}"
+        href="{{ '/resume/swe/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         download="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="glow-hover inline-flex items-center gap-2 px-6 py-3 bg-primary text-dark font-semibold uppercase tracking-wide rounded-lg hover:bg-primary-dark transition-colors"
+        class="glow-hover inline-flex items-center gap-2 px-6 py-3 bg-primary text-dark font-semibold tracking-wide rounded-lg hover:bg-primary-dark transition-colors"
       >
         <svg
           class="w-5 h-5"
@@ -40,16 +45,20 @@ description: View and download my resume/CV
     </div>
 
     <!-- Variant tabs (SWE vs Academic) -->
-    <div role="tablist" aria-label="Resume variant" class="inline-flex gap-1 p-1 mb-4 rounded-lg bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border">
+    <div
+      role="tablist"
+      aria-label="Resume variant"
+      class="inline-flex gap-1 p-1 mb-4 rounded-lg bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border"
+    >
       <button
         type="button"
         role="tab"
         id="tab-swe"
         aria-selected="true"
         data-variant="swe"
-        data-pdf="{{ '/resume/resume-swe.pdf' | relative_url }}"
+        data-pdf="{{ '/resume/swe/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         data-filename="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="px-4 py-2 text-sm font-medium uppercase tracking-wide rounded-md transition-colors bg-primary text-dark"
+        class="px-4 py-2 text-sm font-medium rounded-md transition-colors bg-primary text-dark"
       >
         Software Engineering
       </button>
@@ -59,7 +68,7 @@ description: View and download my resume/CV
         id="tab-academic"
         aria-selected="false"
         data-variant="academic"
-        data-pdf="{{ '/resume/resume-academic.pdf' | relative_url }}"
+        data-pdf="{{ '/resume/academic/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         data-filename="Fachry_Dennis_Heraldi_Academic_CV.pdf"
         class="px-4 py-2 text-sm font-medium rounded-md transition-colors text-muted hover:text-primary"
       >
@@ -239,7 +248,7 @@ description: View and download my resume/CV
             <p class="mb-2">Failed to load PDF</p>
             <a
               id="error-download-link"
-              href="{{ '/resume/resume-swe.pdf' | relative_url }}"
+              href="{{ '/resume/swe/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
               class="text-primary hover:underline"
               >Download instead</a
             >
@@ -259,9 +268,8 @@ description: View and download my resume/CV
 
 <script type="module">
   // Import PDF.js
-  const pdfjsLib = await import(
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs'
-  );
+  const pdfjsLib =
+    await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
 
   // Set worker source
   pdfjsLib.GlobalWorkerOptions.workerSrc =
