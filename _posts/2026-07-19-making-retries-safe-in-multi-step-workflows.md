@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Making Retries Safe in Multi-Step Workflows"
-description: "Lessons from adding idempotency, partial-failure recovery, and controlled manual intervention to a stateful workflow orchestrator."
+title: 'Making Retries Safe in Multi-Step Workflows'
+description: 'Lessons from adding idempotency, partial-failure recovery, and controlled manual intervention to a stateful workflow orchestrator.'
 date: 2026-07-19
 tags: [backend, reliability, idempotency, distributed-systems]
 ---

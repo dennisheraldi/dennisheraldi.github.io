@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Building a Deterministic AI Agent with Optorch"
-description: "Lessons from turning an enterprise RFP into configured quotes and orders with Optorch: a deterministic node graph, tool calls, and machine-readable LLM output, built for The Big Deal Phase II Catalyst."
+title: 'Building a Deterministic AI Agent with Optorch'
+description: 'Lessons from turning an enterprise RFP into configured quotes and orders with Optorch: a deterministic node graph, tool calls, and machine-readable LLM output, built for The Big Deal Phase II Catalyst.'
 date: 2026-06-13
 tags: [ai, llm, agents, architecture, engineering]
 ---
@@ -94,10 +94,10 @@ extract_document:
     system: nodes/extract_document
   routing:
     type: dynamic
-    default: validate_records   # the next node in the chain
+    default: validate_records # the next node in the chain
 ```
 
-This one decision changed everything. The model still does the hard, fuzzy work inside each node, but the shape of the pipeline is fixed and reviewable. When something breaks, the stack trace points at a specific node, not at "the agent." I can reason about step 4 without thinking about steps 1 through 3.
+That single decision did more for reliability than any prompt I wrote. The model still does the hard, fuzzy work inside each node, but the shape of the pipeline is fixed and reviewable. When something breaks, the stack trace points at a specific node, not at "the agent." I can reason about step 4 without thinking about steps 1 through 3.
 
 ## 2. One job per node, with an isolated context
 
@@ -110,7 +110,7 @@ I gave each node its own tightly scoped context. A step sees only the system pro
 A chat model will happily return prose. For a pipeline you want data. The trick is to make the output a contract: ask for a JSON block with an exact schema, then parse and validate it. Suddenly your language model behaves like a structured-data API.
 
 ```json
-{ "customer": "...", "items": [ { "id": "...", "value": 0 } ] }
+{ "customer": "...", "items": [{ "id": "...", "value": 0 }] }
 ```
 
 The prompt spells out that schema and tells the model to return it and nothing else. Tools reinforce this. In Optorch you register a plain function with a decorator, and its type hints plus docstring become the schema the model sees. The prompt and the tool stay in sync, because they are generated from the same place.
@@ -170,13 +170,13 @@ Two smaller decisions saved a lot of pain:
 
 ## 8. Tame the randomness at the model layer, too
 
-Everything above makes the *pipeline* deterministic. The *model* inside each node is still stochastic: the same prompt can produce a different answer because an LLM samples the next token from a probability distribution. George Karapetyan's [guide to taming randomness in LLM agents](https://medium.com/@georgekar91/making-ai-agent-responses-more-repeatable-a-guide-to-taming-randomness-in-llm-agents-fc83d3f247be) is a good tour of the knobs; here is how they landed on this project.
+Everything above makes the _pipeline_ deterministic. The _model_ inside each node is still stochastic: the same prompt can produce a different answer because an LLM samples the next token from a probability distribution. George Karapetyan's [guide to taming randomness in LLM agents](https://medium.com/@georgekar91/making-ai-agent-responses-more-repeatable-a-guide-to-taming-randomness-in-llm-agents-fc83d3f247be) is a good tour of the knobs; here is how they landed on this project.
 
 - **Turn the temperature to zero on any step whose output you parse.** The node that emits the structured JSON runs at `temperature=0`, so it does a greedy decode and takes the most likely token every time. It is the cheapest consistency win there is. One caveat worth knowing: even at zero you are not promised bit-for-bit identical output, because floating-point quirks and model-version changes still leak a little randomness in.
 - **Constrain the output until there is little left to vary.** A strict JSON schema, exact enumerated values, and "set only the fields you were asked to" turn an open-ended generation into something closer to filling in a form. Less room to improvise means less variance. The article calls this reducing the model's degrees of freedom, and that matched my experience exactly.
-- **If it has to be right every time, take it away from the model.** This was my biggest lesson, and it is the one not in the article. A single value needed to be exact, and the model kept getting it subtly wrong, partly because it could not even *see* the field it was meant to set. The fix was not a cleverer prompt; it was moving that decision into deterministic code that derives the value from structured input. Prompt the fuzzy stuff; encode the stuff that must be correct.
+- **If it has to be right every time, take it away from the model.** This was my biggest lesson, and it is the one not in the article. A single value needed to be exact, and the model kept getting it subtly wrong, partly because it could not even _see_ the field it was meant to set. The fix was not a cleverer prompt; it was moving that decision into deterministic code that derives the value from structured input. Prompt the fuzzy stuff; encode the stuff that must be correct.
 - **Cache and dedupe identical work.** The final tool collapses concurrent identical calls into one, so the same input cannot fan out into two divergent runs. When you cannot make a call perfectly reproducible, the next best thing is to make it only once.
-- **Make drift observable.** Each run emits a trace of what the agent did and which APIs it called. Determinism you cannot see is determinism you cannot trust: when a model, or a model *version*, starts behaving differently, you want to catch it in a diff rather than from a customer.
+- **Make drift observable.** Each run emits a trace of what the agent did and which APIs it called. Determinism you cannot see is determinism you cannot trust: when a model, or a model _version_, starts behaving differently, you want to catch it in a diff rather than from a customer.
 
 What I would still add: a fixed `seed` on the providers that support it, and a small golden-set regression (same document in, assert the same shape out) so a model upgrade that quietly changes behavior shows up in CI instead of in production.
 

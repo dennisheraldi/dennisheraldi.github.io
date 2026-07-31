@@ -4,16 +4,14 @@ My personal portfolio and blog built with [Jekyll](https://jekyllrb.com) and [Ta
 
 ## Features
 
-- Clean, minimal design with dark/light mode
-- Responsive layout for all devices
-- Blog with markdown support
+- Dark, minimal design, responsive down to mobile
+- Blog written in Markdown
 - **Two resumes** (Software Engineering + Academic CV) generated from a shared YAML source of truth, auto-compiled to PDF via Typst
-- Fast static site generation
-- GitHub Pages compatible
+- Static site hosted on GitHub Pages
 
 ## Deployment
 
-This site auto-deploys to GitHub Pages via GitHub Actions. Just push to the `main` branch!
+This site auto-deploys to GitHub Pages via GitHub Actions. Push to `main` and the workflow builds and publishes it.
 
 ### Setup GitHub Pages
 

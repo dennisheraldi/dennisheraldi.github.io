@@ -15,8 +15,9 @@
   title: Reliable Order Recovery
   url: /blog/making-retries-safe-in-multi-step-workflows/
   description: >-
-    Added idempotency, automatic retries, and safer error handling to critical
-    order flows, bringing transaction failures down to zero.
+    Added idempotency, bounded automatic retries, and an audited manual recovery
+    path to critical order flows, so a partially failed order resumes instead of
+    duplicating work.
   technologies:
     - Java
     - Process Engine
