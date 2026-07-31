@@ -25,7 +25,7 @@ description: View and download my resume/CV
         id="download-link"
         href="{{ '/resume/swe/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         download="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="glow-hover inline-flex items-center gap-2 px-6 py-3 bg-primary text-dark font-semibold tracking-wide rounded-lg hover:bg-primary-dark transition-colors"
+        class="glow-hover inline-flex items-center gap-2 px-6 py-3 bg-primary text-dark font-semibold tracking-wide rounded-none hover:bg-primary-dark transition-colors"
       >
         <svg
           class="w-5 h-5"
@@ -48,7 +48,7 @@ description: View and download my resume/CV
     <div
       role="tablist"
       aria-label="Resume variant"
-      class="inline-flex gap-1 p-1 mb-4 rounded-lg bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border"
+      class="inline-flex gap-1 p-1 mb-4 rounded-none bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border"
     >
       <button
         type="button"
@@ -58,7 +58,7 @@ description: View and download my resume/CV
         data-variant="swe"
         data-pdf="{{ '/resume/swe/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         data-filename="Fachry_Dennis_Heraldi_Resume.pdf"
-        class="px-4 py-2 text-sm font-medium rounded-md transition-colors bg-primary text-dark"
+        class="px-4 py-2 text-sm font-medium rounded-none transition-colors bg-primary text-dark"
       >
         Software Engineering
       </button>
@@ -70,7 +70,7 @@ description: View and download my resume/CV
         data-variant="academic"
         data-pdf="{{ '/resume/academic/CV%20-%20Fachry%20Dennis%20Heraldi.pdf' | relative_url }}"
         data-filename="Fachry_Dennis_Heraldi_Academic_CV.pdf"
-        class="px-4 py-2 text-sm font-medium rounded-md transition-colors text-muted hover:text-primary"
+        class="px-4 py-2 text-sm font-medium rounded-none transition-colors text-muted hover:text-primary"
       >
         Academic CV
       </button>
@@ -78,7 +78,7 @@ description: View and download my resume/CV
 
     <!-- PDF Viewer Container -->
     <div
-      class="rounded-xl overflow-hidden border border-light-border dark:border-dark-border shadow-lg bg-gray-100 dark:bg-dark-card"
+      class="rounded-none overflow-hidden border border-light-border dark:border-dark-border shadow-lg bg-gray-100 dark:bg-dark-card"
     >
       <!-- PDF Controls -->
       <div
@@ -87,7 +87,7 @@ description: View and download my resume/CV
         <div class="flex items-center gap-2">
           <button
             id="prev-page"
-            class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            class="p-2 rounded-none hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous page"
             disabled
           >
@@ -110,7 +110,7 @@ description: View and download my resume/CV
           </span>
           <button
             id="next-page"
-            class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            class="p-2 rounded-none hover:bg-light-border dark:hover:bg-dark-border transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next page"
             disabled
           >
@@ -133,7 +133,7 @@ description: View and download my resume/CV
         <div class="flex items-center gap-2">
           <button
             id="zoom-out"
-            class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+            class="p-2 rounded-none hover:bg-light-border dark:hover:bg-dark-border transition-colors"
             aria-label="Zoom out"
           >
             <svg
@@ -157,7 +157,7 @@ description: View and download my resume/CV
           >
           <button
             id="zoom-in"
-            class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+            class="p-2 rounded-none hover:bg-light-border dark:hover:bg-dark-border transition-colors"
             aria-label="Zoom in"
           >
             <svg
@@ -176,7 +176,7 @@ description: View and download my resume/CV
           </button>
           <button
             id="fit-width"
-            class="p-2 rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors ml-2"
+            class="p-2 rounded-none hover:bg-light-border dark:hover:bg-dark-border transition-colors ml-2"
             aria-label="Fit to width"
             title="Fit to width"
           >

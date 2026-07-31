@@ -19,7 +19,7 @@ description: Notes on backend work, payments, and systems I have built.
     {% if sorted_posts.size > 0 %}
     <div class="grid gap-6 md:grid-cols-2">
       {% for post in sorted_posts %}
-      <article class="glow-hover group p-6 rounded-xl border border-dark-border bg-dark-card hover:border-primary/50 transition-colors">
+      <article class="glow-hover group p-6 rounded-none border border-dark-border bg-dark-card hover:border-primary/50 transition-colors">
         <a href="{{ post.url | relative_url }}" class="block">
           <div class="flex items-center gap-2 text-sm text-muted mb-3">
             <time datetime="{{ post.date | date_to_xmlschema }}">
