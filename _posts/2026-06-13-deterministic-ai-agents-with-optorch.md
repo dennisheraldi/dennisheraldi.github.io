@@ -8,7 +8,7 @@ tags: [ai, llm, agents, architecture, engineering]
 
 Most of the "AI agent" demos you see online are free-form: you give a model some tools and a goal, and you hope it figures out the right sequence of steps. That is great for a demo and terrifying for production. When the same input can produce a different path every run, you cannot debug it, you cannot test it, and you certainly cannot put it in front of a customer.
 
-I recently built an agent that takes a long, messy document and turns it into a set of structured business records, with a few external systems involved along the way. The interesting part was not the model. It was making the AI behave like a normal, predictable piece of software. The tool that made that possible was [Optorch](https://github.com/optorchai/optorch), an open-source AI orchestration framework authored by Chris Churchill.
+I recently built an agent that takes a long, messy enterprise RFP and turns it into configured quotes and orders, with catalog lookup, site qualification, and a few external systems along the way. That work was part of CSG's contribution to **The Big Deal Phase II** Catalyst, which [TM Forum Inform later covered](https://inform.tmforum.org/research-and-analysis/proofs-of-concept/using-ai-and-standards-to-transform-complex-b2b-quoting-and-ordering). The interesting part was not the model. It was making the AI behave like a normal, predictable piece of software. The tool that made that possible was [Optorch](https://github.com/optorchai/optorch), an open-source AI orchestration framework authored by Chris Churchill.
 
 Here are the lessons that transferred beyond this one project.
 
@@ -183,5 +183,7 @@ What I would still add: a fixed `seed` on the providers that support it, and a s
 ## Closing thoughts
 
 The thing I will carry forward is this: the hard part of production AI is not the model, it is the engineering around it. Determinism, isolation, contracts, graceful failure, and boring CI are what turn an impressive demo into something you can hand to a colleague and walk away from.
+
+Seeing that same idea show up in the [TM Forum Inform write-up of The Big Deal Phase II](https://inform.tmforum.org/research-and-analysis/proofs-of-concept/using-ai-and-standards-to-transform-complex-b2b-quoting-and-ordering) was a useful check: browsable, editable, fulfillable quotes only work when the AI is grounded in catalog rules and real APIs, not when it freelances.
 
 If you want to explore the framework, [Optorch is open source](https://github.com/optorchai/optorch). It is a clean way to think about AI workflows as plain Python nodes and tools rather than magic.

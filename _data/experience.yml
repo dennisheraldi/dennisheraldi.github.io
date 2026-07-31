@@ -31,7 +31,7 @@
   current: true
   highlights:
     - "Built a **Java service that converts English and Mandarin emails into structured order-status data**, routing uncertain output to manual review. Delivered it in **2 days** and it was selected for a **Mobile World Congress Barcelona 2026 demo**."
-    - "Built a **document-to-quote workflow** that extracts RFP requirements, qualifies sites across providers, and creates configured customer quotes and orders, reducing a process that took **hours to a few minutes**."
+    - "Built the **document-to-quote workflow** for **The Big Deal Phase II** Catalyst, later covered by **TM Forum Inform**: extract RFP requirements, qualify sites across providers, and create configured quotes and orders, cutting a process that took **hours to a few minutes**."
     - "Built a tool that converts natural-language mapping rules into executable transformation scripts, automating a manual customer-onboarding step and earning **second place in CSG's internal AI competition**."
   highlights_swe:
     - "Supported **10+ international banking demos as the primary engineer**, owning the supporting microservices and providing first-line technical support. Built reusable document and API tools for later events."
