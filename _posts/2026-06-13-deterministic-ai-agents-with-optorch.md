@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Deterministic AI Agent with Optorch"
-description: "Lessons from turning an unstructured document into structured business records using Optorch, an open-source AI orchestration framework, with a node graph, tool calls, and machine-readable LLM output."
+description: "Lessons from turning an enterprise RFP into configured quotes and orders with Optorch: a deterministic node graph, tool calls, and machine-readable LLM output, built for The Big Deal Phase II Catalyst."
 date: 2026-06-13
 tags: [ai, llm, agents, architecture, engineering]
 ---

@@ -2,8 +2,9 @@
   title: RFP to Quote Agent
   url: /blog/deterministic-ai-agents-with-optorch/
   description: >-
-    Turns unstructured RFP documents into configured telecom quotes, reducing
-    hours of manual catalog lookup and site qualification to a few minutes.
+    Part of The Big Deal Phase II Catalyst (TM Forum Inform). Turns enterprise
+    RFPs into configured, reviewable quotes and orders via catalog lookup and
+    site qualification, cutting hours of manual work to a few minutes.
   technologies:
     - Python
     - Java
